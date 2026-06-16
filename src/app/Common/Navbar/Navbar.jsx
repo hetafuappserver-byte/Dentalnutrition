@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const CDN = "https://moroccanoilprofessionals.com/cdn/shop/files";
 const LOGO = "/Logos/LogoBlack.svg";
 
 const NAV_ITEMS = [
@@ -45,16 +44,11 @@ const NAV_ITEMS = [
     groups: [
       {
         title: "Category",
-        links: [{ label: "Bits", href: "/Products/bits" },
-          {
-            label: "Lollipops",
-            href: "/Products/lollipops",
-          }, 
-           { label: "Mouthwashes", href: "/Products/mouthwash" },
-          {
-            label: "Smarts",
-            href: "/Products/smarts",
-          },
+        links: [
+          { label: "Bits", href: "/Products/bits" },
+          { label: "Lollipops", href: "/Products/lollipops" },
+          { label: "Mouthwashes", href: "/Products/mouthwash" },
+          { label: "Smarts", href: "/Products/smarts" },
         ],
       },
     ],
@@ -71,6 +65,9 @@ const NAV_ITEMS = [
     ],
   },
 ];
+
+const MOBILE_NAV_ITEM =
+  "block w-full text-left py-[0.65rem] border-0 border-b border-[rgba(64,30,23,0.15)] bg-transparent [font-family:var(--heading-font)] text-sm tracking-[0.1em] uppercase text-inherit cursor-pointer";
 
 function IconArrowRight() {
   return (
@@ -97,31 +94,46 @@ function IconMenu() {
   );
 }
 
-function MegaMenu({ item, isOpen }) {
+function MegaMenu({ item, isOpen, onMouseEnter, onMouseLeave }) {
   return (
     <div
-      className={`mo-mega-menu${isOpen ? " is-open" : ""}`}
+      className={`absolute left-0 right-0 top-full z-40 hidden border-t border-[rgba(64,30,23,0.15)] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-[opacity,visibility] duration-200 before:absolute before:bottom-full before:left-0 before:right-0 before:h-12 before:content-[''] min-[1000px]:block ${
+        isOpen
+          ? "pointer-events-auto visible opacity-100"
+          : "pointer-events-none invisible opacity-0 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100"
+      }`}
       role="region"
       aria-label={`${item.label} menu`}
       aria-hidden={!isOpen}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
-      <div className="mo-mega-menu__inner">
+      <div className="mx-auto max-w-[1400px] px-8 pb-8 pt-6">
         {item.discover && (
-          <Link href={item.href} className="mo-mega-menu__discover">
+          <Link
+            href={item.href}
+            className="mb-5 inline-flex items-center gap-3 text-lg font-bold capitalize tracking-[0.02em]"
+          >
             {item.discover}
             <IconArrowRight />
           </Link>
         )}
 
-        <div className="mo-mega-menu__body">
+        <div className="flex flex-wrap items-start gap-8 min-[1000px]:gap-x-16">
           {item.groups && (
-            <ul className="mo-mega-menu__linklist">
+            <ul className="flex flex-wrap gap-12">
               {item.groups.map((group) => (
-                <li key={group.title} className="mo-mega-menu__column">
-                  <p className="mo-mega-menu__group-title">{group.title}</p>
-                  <div className="mo-mega-menu__links">
+                <li key={group.title} className="min-w-40">
+                  <p className="mb-4 m-0 [font-family:var(--heading-font)] text-sm tracking-[0.1em] uppercase">
+                    {group.title}
+                  </p>
+                  <div className="flex flex-col gap-[0.65rem]">
                     {group.links.map((link) => (
-                      <Link key={link.label} href={link.href}>
+                      <Link
+                        key={link.label}
+                        href={link.href}
+                        className="text-[0.9375rem] opacity-75 hover:opacity-100"
+                      >
                         {link.label}
                       </Link>
                     ))}
@@ -132,10 +144,13 @@ function MegaMenu({ item, isOpen }) {
           )}
 
           {item.flatLinks && (
-            <ul className="mo-mega-menu__flat-list">
+            <ul className="m-0 flex w-full list-none flex-row flex-wrap items-center gap-8 p-0">
               {item.flatLinks.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="mo-mega-menu__flat-link">
+                <li key={link.label} className="m-0">
+                  <Link
+                    href={link.href}
+                    className="[font-family:var(--heading-font)] text-sm tracking-[0.1em] uppercase"
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -144,20 +159,23 @@ function MegaMenu({ item, isOpen }) {
           )}
 
           {item.promos && (
-            <div className="mo-mega-menu__promo-grid">
+            <div className="grid min-w-[min(100%,720px)] flex-1 grid-cols-3 gap-4">
               {item.promos.map((promo) => (
                 <Link
                   key={promo.title}
                   href={promo.href}
-                  className="mo-mega-menu__promo-item"
+                  className="group relative block overflow-hidden"
                 >
                   <Image
                     src={promo.image}
                     alt={promo.title}
                     width={315}
                     height={365}
+                    className="h-[280px] w-full object-cover transition-transform duration-[350ms] group-hover:scale-[1.04]"
                   />
-                  <span className="mo-mega-menu__promo-overlay">{promo.title}</span>
+                  <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent p-4 [font-family:var(--heading-font)] text-sm tracking-[0.1em] uppercase text-white">
+                    {promo.title}
+                  </span>
                 </Link>
               ))}
             </div>
@@ -194,38 +212,42 @@ export default function Navbar() {
   useEffect(() => () => clearCloseMenuTimer(), []);
 
   return (
-    <header className="mo-header">
-      <div className="mo-header__inner">
-        <h1 className="mo-header__logo">
-          <Link href="/">
-            <span className="mo-sr-only">Hetafu</span>
+    <header className="relative sticky top-0 z-50 border-b border-[rgba(64,30,23,0.15)] bg-white">
+      <div className="flex items-center gap-3 px-4 py-2 md:px-5 md:py-[0.65rem] min-[1000px]:gap-[5.5rem]">
+        <h1 className="m-0 order-2 flex flex-1 justify-center min-[1000px]:order-1 min-[1000px]:flex-none min-[1000px]:justify-start">
+          <Link href="/" className="inline-flex shrink-0">
+            <span className="sr-only">Hetafu</span>
             <Image
               src={LOGO}
               alt="Hetafu — Health Taste Fun"
               width={212}
               height={150}
               priority
+              className="!block !h-[72px] !w-auto md:!h-[88px] min-[1000px]:!h-24"
             />
           </Link>
         </h1>
 
-        <nav className="mo-header__primary-nav" aria-label="Primary navigation">
+        <nav
+          className="order-1 flex items-center min-[1000px]:order-2 min-[1000px]:flex-1"
+          aria-label="Primary navigation"
+        >
           <button
             type="button"
-            className="mo-header__menu-btn"
+            className="inline-flex cursor-pointer border-none bg-transparent p-1 text-inherit min-[1000px]:hidden"
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
             onClick={() => setMobileOpen((open) => !open)}
           >
-            <span className="mo-sr-only">Navigation menu</span>
+            <span className="sr-only">Navigation menu</span>
             <IconMenu />
           </button>
 
-          <ul className="mo-header__nav-list">
+          <ul className="hidden items-center gap-8 min-[1000px]:flex">
             {NAV_ITEMS.map((item) => (
               <li
                 key={item.label}
-                className="mo-header__nav-item"
+                className="group static"
                 onMouseEnter={() => showMegaMenu(item.label)}
                 onMouseLeave={scheduleCloseMegaMenu}
                 onFocusCapture={() => showMegaMenu(item.label)}
@@ -235,10 +257,18 @@ export default function Navbar() {
                   }
                 }}
               >
-                <Link href={item.href} className="mo-header__nav-trigger">
+                <Link
+                  href={item.href}
+                  className="inline-block py-1 [font-family:var(--heading-font)] text-sm tracking-[0.1em] uppercase text-inherit hover:opacity-75"
+                >
                   {item.label}
                 </Link>
-                <MegaMenu item={item} isOpen={openMenu === item.label} />
+                <MegaMenu
+                  item={item}
+                  isOpen={openMenu === item.label}
+                  onMouseEnter={() => showMegaMenu(item.label)}
+                  onMouseLeave={scheduleCloseMegaMenu}
+                />
               </li>
             ))}
           </ul>
@@ -247,12 +277,15 @@ export default function Navbar() {
 
       <div
         id="mobile-nav"
-        className={`mo-mobile-nav${mobileOpen ? " is-open" : ""}`}
+        className={`border-t border-[rgba(64,30,23,0.15)] bg-white px-4 py-2 pb-3 min-[1000px]:!hidden ${
+          mobileOpen ? "block" : "hidden"
+        }`}
       >
         {NAV_ITEMS.map((item) => (
           <div key={item.label}>
             <button
               type="button"
+              className={MOBILE_NAV_ITEM}
               aria-expanded={expandedMobile === item.label}
               onClick={() =>
                 setExpandedMobile((current) =>
@@ -263,19 +296,29 @@ export default function Navbar() {
               {item.label}
             </button>
             {expandedMobile === item.label && (
-              <div className="mo-mobile-nav__sub">
+              <div className="pl-4">
                 {item.discover && (
-                  <Link href={item.href}>{item.discover}</Link>
+                  <Link href={item.href} className={MOBILE_NAV_ITEM}>
+                    {item.discover}
+                  </Link>
                 )}
                 {item.groups?.flatMap((group) =>
                   group.links.map((link) => (
-                    <Link key={`${group.title}-${link.label}`} href={link.href}>
+                    <Link
+                      key={`${group.title}-${link.label}`}
+                      href={link.href}
+                      className={`${MOBILE_NAV_ITEM} [font-family:var(--body-font)] text-[0.9375rem] normal-case tracking-[0.02em]`}
+                    >
                       {link.label}
                     </Link>
                   )),
                 )}
                 {item.flatLinks?.map((link) => (
-                  <Link key={link.label} href={link.href}>
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className={`${MOBILE_NAV_ITEM} [font-family:var(--body-font)] text-[0.9375rem] normal-case tracking-[0.02em]`}
+                  >
                     {link.label}
                   </Link>
                 ))}
@@ -283,7 +326,9 @@ export default function Navbar() {
             )}
           </div>
         ))}
-        <Link href="/account/login">Account</Link>
+        <Link href="/account/login" className={MOBILE_NAV_ITEM}>
+          Account
+        </Link>
       </div>
     </header>
   );

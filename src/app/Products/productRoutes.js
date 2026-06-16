@@ -1,7 +1,14 @@
-import { getBitsProduct } from "./Bits/bitsProducts";
-import { getLollipopsProduct } from "./Lollipops/lollipopsProducts";
-import { getMouthwashProduct } from "./Mouthwash/mouthwashProducts";
-import { getSmartsProduct } from "./Smarts/smartsProducts";
+import { getBitsProduct, BITS_COLLECTION } from "./Bits/bitsProducts";
+import { getLollipopsProduct, LOLLIPOPS_COLLECTION } from "./Lollipops/lollipopsProducts";
+import { getMouthwashProduct, MOUTHWASH_COLLECTION } from "./Mouthwash/mouthwashProducts";
+import { getSmartsProduct, SMARTS_COLLECTION } from "./Smarts/smartsProducts";
+
+export const COLLECTION_BY_CATEGORY = {
+  bits: BITS_COLLECTION,
+  lollipops: LOLLIPOPS_COLLECTION,
+  mouthwash: MOUTHWASH_COLLECTION,
+  smarts: SMARTS_COLLECTION,
+};
 
 export const COLLECTION_PAGES = {
   bits: {

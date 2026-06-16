@@ -3,11 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import {
-  MOUTHWASH_COLLECTION,
-  MOUTHWASH_PRODUCTS,
-  getMouthwashProduct,
-} from "./mouthwashProducts";
+import { MOUTHWASH_COLLECTION, MOUTHWASH_PRODUCTS } from "./mouthwashProducts";
 import { getProductHref, getProductHrefForSlug } from "../productRoutes";
 
 const TAB_DEFINITIONS = [
@@ -19,8 +15,8 @@ const TAB_DEFINITIONS = [
 export default function Mouthwash() {
   return (
     <main id="main" className="mo-bits">
-      <section className="mo-bits-banner" aria-label="Collection">
-        <nav className="mo-bits-breadcrumb" aria-label="Breadcrumb">
+      <div className="mo-bits-breadcrumb-container sticky  top-40  ">
+        <nav className="mo-bits-breadcrumb flex justify-start pl-14 font-bold" aria-label="Breadcrumb">
           <ol className="mo-bits-breadcrumb__list">
             <li>
               <Link href="/">Home</Link>
@@ -28,12 +24,13 @@ export default function Mouthwash() {
             <li aria-current="page">{MOUTHWASH_COLLECTION.title}</li>
           </ol>
         </nav>
-
+      </div>
+      <section className="mo-bits-banner" aria-label="Collection">
         <div className="mo-bits-banner__content">
           <h1 className="mo-bits-banner__title">{MOUTHWASH_COLLECTION.title}</h1>
           <p className="mo-bits-banner__description">
-            Create versatile looks with high-performing styling products infused
-            with antioxidant-rich argan oil.
+            CUTE Mouthwash Edible Probiotic Mouthwash
+            Edible, pH-neutral mouthwash gentle enough for kids, effective for all
           </p>
         </div>
       </section>
@@ -80,8 +77,10 @@ function IngredientCard({ item }) {
   );
 }
 
-export function MouthwashProductDetail({ product, category = "mouthwash" }) {
+export function ProductDetail({ product, collection }) {
   const ingredients = product.ingredients ?? [];
+  const gallery = product.gallery?.length ? product.gallery : [product.image];
+  const banner = product.banner ?? gallery[0];
   const [activeImage, setActiveImage] = useState(0);
   const [activeTab, setActiveTab] = useState("howToUse");
   const [openAccordion, setOpenAccordion] = useState("howToUse");
@@ -95,24 +94,38 @@ export function MouthwashProductDetail({ product, category = "mouthwash" }) {
       <section className="mo-product-detail__hero">
         <div
           className="mo-product-detail__banner"
-          style={{ backgroundImage: `url(${product.banner})` }}
+          style={{ backgroundImage: `url(${banner})` }}
           aria-hidden="true"
         />
+
+        <div className="mo-bits-breadcrumb-container sticky top-40 z-10">
+          <nav className="mo-bits-breadcrumb flex justify-start pl-14 font-bold" aria-label="Breadcrumb">
+            <ol className="mo-bits-breadcrumb__list">
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+              <li>
+                <Link href={collection.href}>{collection.title}</Link>
+              </li>
+              <li aria-current="page">{product.title}</li>
+            </ol>
+          </nav>
+        </div>
 
         <div className="mo-product-detail__layout">
           <div className="mo-product-detail__gallery">
             <div className="mo-product-detail__gallery-main">
               <Image
-                src={product.gallery[activeImage]}
+                src={gallery[activeImage]}
                 alt={product.title}
                 width={1200}
                 height={1200}
                 priority
               />
             </div>
-            {product.gallery.length > 1 && (
+            {gallery.length > 1 && (
               <div className="mo-product-detail__gallery-thumbs">
-                {product.gallery.map((image, index) => (
+                {gallery.map((image, index) => (
                   <button
                     key={image}
                     type="button"
@@ -136,20 +149,6 @@ export function MouthwashProductDetail({ product, category = "mouthwash" }) {
           </div>
 
           <div className="mo-product-detail__info">
-            <nav className="mo-product-detail__breadcrumb" aria-label="Breadcrumb">
-              <ol>
-                <li>
-                  <Link href="/">Home</Link>
-                </li>
-                <li>
-                  <Link href={MOUTHWASH_COLLECTION.href}>
-                    {MOUTHWASH_COLLECTION.title}
-                  </Link>
-                </li>
-                <li aria-current="page">{product.title}</li>
-              </ol>
-            </nav>
-
             <h1 className="mo-product-detail__title">{product.title}</h1>
             {product.tagline && (
               <p className="mo-product-detail__tagline">{product.tagline}</p>
@@ -243,7 +242,6 @@ export function MouthwashProductDetail({ product, category = "mouthwash" }) {
           <h2 className="mo-product-detail__related-title">Related products</h2>
           <div className="mo-product-grid">
             {product.related.map((item) => {
-              const relatedProduct = getMouthwashProduct(item.slug);
               const relatedHref = getProductHrefForSlug(item.slug);
               const card = (
                 <>
@@ -259,7 +257,7 @@ export function MouthwashProductDetail({ product, category = "mouthwash" }) {
                 </>
               );
 
-              if (!relatedProduct || !relatedHref) {
+              if (!relatedHref) {
                 return (
                   <div
                     key={item.slug}

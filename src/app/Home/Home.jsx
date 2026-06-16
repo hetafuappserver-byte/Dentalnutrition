@@ -43,29 +43,27 @@ const SLIDES = [
   },
 ];
 
-const HAIRCARE_PRODUCTS = [
+const HETAFU_PRODUCTS = [
   {
-    title: "Moroccanoil Treatment",
-    href: "/Products/smarts/moroccanoil-treatment",
-    image: `${CDN}/Artboard_1_9a751184-b3b0-4b26-9e95-08bde5cc9a94.png?v=1767902505&width=500`,
+    title: "Denta Bits",
+    href: "/Products/bits",
+    image: "/Products/DentaBits/Dentabits1.png",
   },
   {
-    title: "Moroccanoil Treatment Light",
-    href: "/Products/smarts/moroccanoil-treatment-light",
-    image: `${CDN}/Artboard_1_9a751184-b3b0-4b26-9e95-08bde5cc9a94.png?v=1767902505&width=500`,
+    title: "Cute Mouthwash",
+    href: "/Products/mouthwash",
+    image: "/Products/CuteMouthwash/Cute.png",
   },
   {
-    title: "Moroccanoil Treatment Purple",
-    href: "/Products/smarts/moroccanoil-treatment-purple",
-    image: `${CDN}/Artboard_1_9a751184-b3b0-4b26-9e95-08bde5cc9a94.png?v=1767902505&width=500`,
+    title: "Denta Smarts",
+    href: "/Products/smarts",
+    image: "/Products/DentaSmarts/smarts.png",
   },
   {
-    title: "Moroccanoil Treatment Mist",
-    href: "/Products/smarts/moroccanoil-treatment-mist",
-    image: `${CDN}/Artboard_1_9a751184-b3b0-4b26-9e95-08bde5cc9a94.png?v=1767902505&width=500`,
+    title: "Dollipops",
+    href: "/Products/lollipops",
+    image: "/Products/Dollipops/Dollipops.png",
   },
-
-  
 ];
 
 const COLLECTION_CARDS = [
@@ -80,6 +78,15 @@ const COLLECTION_CARDS = [
     image: `${CDN}/Artboard_2_1.png?v=1771448589&width=720`,
   },
 ];
+
+const SLIDESHOW_ARROW =
+  "absolute top-1/2 z-[2] inline-flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center border border-white/75 bg-white/15 text-white transition-[background,border-color] duration-200 hover:border-white hover:!bg-white/30 md:h-12 md:w-12";
+
+const SLIDESHOW_CONTENT =
+  "pointer-events-none absolute inset-0 z-[1] flex max-w-[min(100%,34rem)] flex-col items-start justify-center p-8 text-left text-[var(--mo-brown)] md:max-w-[min(50%,36rem)] md:px-16 md:py-12";
+
+const COLLECTION_BUTTON =
+  "inline-flex items-center justify-center border border-white px-6 py-[0.85rem] [font-family:var(--body-font)] text-[0.9375rem] font-bold tracking-[0.18em] uppercase text-white transition-colors duration-200 hover:!bg-white hover:!text-[var(--mo-brown)]";
 
 function IconChevronLeft() {
   return (
@@ -113,10 +120,10 @@ function IconChevronRight() {
 
 function ProductGrid({ products }) {
   return (
-    <div className="mo-product-grid">
+    <div className="mx-auto mt-8 grid max-w-[1200px] grid-cols-2 gap-5 md:grid-cols-4 md:gap-6">
       {products.map((product) => (
-        <a key={product.title} href={product.href} className="mo-product-card">
-          <div className="mo-product-card__image">
+        <a key={product.title} href={product.href} className="text-center">
+          <div className="mb-3 aspect-square overflow-hidden rounded-full bg-[#f3f3f3] [&_img]:!h-full [&_img]:!w-full [&_img]:object-cover">
             <Image
               src={product.image}
               alt={product.title}
@@ -124,7 +131,7 @@ function ProductGrid({ products }) {
               height={500}
             />
           </div>
-          <p className="mo-product-card__title">{product.title}</p>
+          <p className="text-base capitalize tracking-[0.02em]">{product.title}</p>
         </a>
       ))}
     </div>
@@ -149,14 +156,14 @@ export default function Home() {
     setActiveSlide((current) => (current + 1) % SLIDES.length);
   };
 
-  const products = HAIRCARE_PRODUCTS;
+  const products = HETAFU_PRODUCTS;
 
   return (
     <main id="main">
-      <section className="mo-slideshow" aria-label="Featured banners">
+      <section className="relative h-[80vh] overflow-hidden bg-black" aria-label="Featured banners">
         <button
           type="button"
-          className="mo-slideshow__arrow mo-slideshow__arrow--prev"
+          className={`${SLIDESHOW_ARROW} left-4 md:left-6`}
           aria-label="Previous slide"
           onClick={goToPrevSlide}
         >
@@ -164,21 +171,21 @@ export default function Home() {
         </button>
         <button
           type="button"
-          className="mo-slideshow__arrow mo-slideshow__arrow--next"
+          className={`${SLIDESHOW_ARROW} right-4 md:right-6`}
           aria-label="Next slide"
           onClick={goToNextSlide}
         >
           <IconChevronRight />
         </button>
         <div
-          className="mo-slideshow__slides"
+          className="flex h-full transition-transform duration-[600ms] ease-in-out"
           style={{ transform: `translateX(-${activeSlide * 100}%)` }}
         >
           {SLIDES.map((slide, index) => (
             <a
               key={slide.image}
               href={slide.href}
-              className="mo-slideshow__slide"
+              className="relative h-[80vh] flex-[0_0_100%]"
             >
               <Image
                 src={slide.image}
@@ -186,23 +193,40 @@ export default function Home() {
                 width={slide.width}
                 height={slide.height}
                 priority={index === 0}
+                className="!h-full !w-full object-cover"
               />
               <div
-                className={`mo-slideshow__content${slide.textAlign === "right" ? " mo-slideshow__content--right" : ""}`}
+                className={`${SLIDESHOW_CONTENT}${
+                  slide.textAlign === "right"
+                    ? " left-auto right-0 items-end text-right max-w-[min(50%,36rem)]"
+                    : ""
+                }`}
               >
-                <p className="mo-slideshow__eyebrow">{slide.eyebrow}</p>
-                <h2 className="mo-slideshow__title">{slide.title}</h2>
-                <p className="mo-slideshow__subtitle">{slide.subtitle}</p>
+                <p className="m-0 mb-3 [font-family:var(--heading-font)] text-sm font-semibold tracking-[0.12em] uppercase text-[var(--mo-teal)]">
+                  {slide.eyebrow}
+                </p>
+                <h2 className="m-0 mb-4 [font-family:var(--heading-font)] text-[clamp(1.75rem,4vw,3rem)] font-normal leading-[1.15] tracking-[0.03em]">
+                  {slide.title}
+                </h2>
+                <p
+                  className={`m-0 max-w-md text-[clamp(0.9375rem,2vw,1.125rem)] leading-relaxed text-[rgba(64,30,23,0.85)]${
+                    slide.textAlign === "right" ? " ml-auto" : ""
+                  }`}
+                >
+                  {slide.subtitle}
+                </p>
               </div>
             </a>
           ))}
         </div>
-        <div className="mo-slideshow__dots">
+        <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2">
           {SLIDES.map((slide, index) => (
             <button
               key={slide.image}
               type="button"
-              className={`mo-slideshow__dot${index === activeSlide ? " is-active" : ""}`}
+              className={`h-[3px] w-10 cursor-pointer border-0 transition-colors ${
+                index === activeSlide ? "bg-white" : "bg-white/40"
+              }`}
               aria-label={`Go to slide ${index + 1}`}
               onClick={() => setActiveSlide(index)}
             />
@@ -210,25 +234,30 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mo-section mo-section--center">
-        <p className="mo-h6">DISCOVER OUR PRODUCTS</p>
-        <div className="mo-tab-nav" role="tablist">
-        </div>
+      <section className="px-5 py-10 text-center md:px-8 md:py-16">
+        <p className="[font-family:var(--heading-font)] text-[30px] font-normal tracking-[0.1em] uppercase">
+          DISCOVER OUR PRODUCTS
+        </p>
         <ProductGrid products={products.slice(0, 8)} />
       </section>
 
-      <section className="mo-section">
-        <div className="mo-collection-grid">
+      <section className="px-5 py-10 md:px-8 md:py-16">
+        <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-4 md:grid-cols-2">
           {COLLECTION_CARDS.map((card) => (
-            <a key={card.label} href={card.href} className="mo-collection-card">
+            <a
+              key={card.label}
+              href={card.href}
+              className="group relative block min-h-[320px] overflow-hidden"
+            >
               <Image
                 src={card.image}
                 alt={card.label}
                 width={720}
                 height={720}
+                className="!h-full !min-h-[320px] !w-full object-cover transition-transform duration-[400ms] group-hover:scale-[1.03]"
               />
-              <div className="mo-collection-card__overlay">
-                <span className="mo-button mo-button--outline">{card.label}</span>
+              <div className="absolute inset-0 flex items-center justify-center bg-black/10">
+                <span className={COLLECTION_BUTTON}>{card.label}</span>
               </div>
             </a>
           ))}

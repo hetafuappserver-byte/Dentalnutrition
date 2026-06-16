@@ -1,11 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, useMemo } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-
-const CDN = "https://moroccanoilprofessionals.com/cdn/shop/files";
 
 const FOOTER_LINKS = {
   professionals: [
@@ -95,8 +92,6 @@ const SPOTLIGHT_VIDEOS = [
   { src: "/Videos/testvideo52.mp4", link: "https://youtu.be/PGYQCYn6sR0", id: "test-video-52", poster: null, alt: "Dental nutrition spotlight video 52" },
 ];
 
-const SLIDE_WIDTH = 316;
-
 function IconArrowSubmit() {
   return (
     <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -135,19 +130,38 @@ function IconInstagram() {
   );
 }
 
+const FOOTER_HEADING =
+  "m-0 mb-4 [font-family:var(--heading-font)] text-sm font-semibold tracking-[0.08em] uppercase";
+
+const FOOTER_LINK =
+  "text-[0.9375rem] no-underline transition-opacity hover:!underline";
+
+const FOOTER_LEGAL_LINK =
+  "text-[var(--mo-teal)] no-underline transition-opacity hover:!underline";
+
+const FOOTER_SOCIAL_LINK =
+  "inline-flex items-center gap-[0.65rem] text-[0.9375rem] opacity-65 no-underline transition-opacity duration-200 hover:opacity-100";
+
 function FooterLinkColumn({ title, links, children }) {
   return (
-    <div className="mo-footer__block mo-footer__block--links">
-      <p className="mo-footer__heading">{title}</p>
-      <ul className="mo-footer__links">
+    <div className="md:max-w-[17rem] md:flex-[0_1_17rem]">
+      <p className={FOOTER_HEADING}>{title}</p>
+      <ul className="m-0 flex list-none flex-col gap-[0.65rem] p-0">
         {links.map((link) => (
           <li key={link.label}>
             {link.href.startsWith("http") ? (
-              <a href={link.href} target="_blank" rel="noopener noreferrer">
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={FOOTER_LINK}
+              >
                 {link.label}
               </a>
             ) : (
-              <Link href={link.href}>{link.label}</Link>
+              <Link href={link.href} className={FOOTER_LINK}>
+                {link.label}
+              </Link>
             )}
           </li>
         ))}
@@ -229,7 +243,7 @@ function SpotlightCarousel() {
   };
 
   return (
-    <div ref={containerRef} className="mo-footer__spotlight" role="region" aria-label="Spotlight carousel">
+    <div ref={containerRef} className="mt-4 w-full" role="region" aria-label="Spotlight carousel">
       <div className="relative w-full overflow-hidden">
         <div className="relative flex items-center justify-center h-[500px] sm:h-[600px] md:h-[600px] lg:h-[650px] xl:h-[700px] 2xl:h-[750px]">
           {/* Left Navigation Button */}
@@ -368,43 +382,42 @@ function SpotlightCarousel() {
 
 export default function Footer() {
   return (
-    <footer className="mo-footer">
-      <div className="mo-footer__inner">
-        <div className="mo-footer__community">
-          <p className="mo-footer__heading mo-footer__community-label">
-            Find your community
-          </p>
-          <p className="mo-footer__community-handle">
+    <footer className="bg-[#c9f5f5] text-[var(--mo-brown)]">
+      <div className="mx-auto grid max-w-[1425px] gap-10 px-5 pt-10 pb-0 md:gap-12 md:px-8 md:pt-12 lg:px-12">
+        <div className="text-center">
+          <p className={`${FOOTER_HEADING} mb-2`}>Find your community</p>
+          <p className="m-0 text-2xl leading-tight">
             <a
               href="https://www.instagram.com/IDAcademy"
               target="_blank"
               rel="noopener noreferrer"
+              className="no-underline transition-opacity duration-200 hover:!opacity-75"
             >
               @IDA Academy
             </a>
           </p>
         </div>
 
-        <div className="mo-footer__block-list">
-          <div className="mo-footer__block mo-footer__block--app">
+        <div className="grid items-start gap-10 md:flex md:flex-wrap md:justify-between md:gap-12 min-[1150px]:gap-x-20">
+          <div className="md:mx-auto md:w-full md:max-w-full md:flex-[0_0_100%]">
             <SpotlightCarousel />
           </div>
 
-          <div className="mo-footer__block mo-footer__block--newsletter">
-            <p className="mo-footer__heading">Stay in the know</p>
-            <p className="mo-footer__newsletter-text">
+          <div className="md:max-w-80 md:flex-[1_1_14rem]">
+            <p className={FOOTER_HEADING}>Stay in the know</p>
+            <p className="m-0 mb-5 text-[0.9375rem] leading-relaxed">
               Stay in the loop about exclusive offers and the latest product
               information with our newsletter.
             </p>
             <form
-              className="mo-footer__form"
+              className="flex max-w-full items-stretch"
               action="/contact#newsletter-form"
               method="post"
             >
               <input type="hidden" name="form_type" value="customer" />
               <input type="hidden" name="utf8" value="✓" />
               <input type="hidden" name="contact[tags]" value="newsletter" />
-              <div className="mo-footer__field">
+              <div className="relative flex-1">
                 <input
                   id="footer-email"
                   type="email"
@@ -412,23 +425,27 @@ export default function Footer() {
                   placeholder="E-mail"
                   autoComplete="email"
                   required
+                  className="h-10 w-full border border-[var(--mo-teal)] border-r-0 bg-white px-3 [font-family:var(--body-font)] text-[0.9375rem] text-[var(--mo-brown)] placeholder:text-[rgba(64,30,23,0.65)]"
                 />
               </div>
-              <button type="submit" className="mo-footer__submit" aria-label="Subscribe">
+              <button
+                type="submit"
+                className="inline-flex h-10 w-10 min-w-10 cursor-pointer items-center justify-center border border-[var(--mo-teal)] bg-[var(--mo-teal)] text-white transition-colors duration-200 hover:!bg-[#02aba9]"
+                aria-label="Subscribe"
+              >
                 <IconArrowSubmit />
               </button>
             </form>
           </div>
 
           <FooterLinkColumn title="About Us" links={FOOTER_LINKS.about}>
-            <div className="mo-footer__commitments">
-            </div>
+            <div className="mt-4" />
           </FooterLinkColumn>
 
           <FooterLinkColumn title="Support" links={FOOTER_LINKS.support}>
-            <div className="mo-footer__nyc">
-              <p className="mo-footer__heading">NYC Academy</p>
-              <div className="mo-nyc-address">
+            <div className="mt-4">
+              <p className={FOOTER_HEADING}>NYC Academy</p>
+              <div className="mt-3 flex items-start gap-3 text-[0.9375rem] leading-normal">
                 <IconLocation />
                 <div>
                   Plot No. 14D/1, 3rd Floor, Dwaraka Signature Building,
@@ -442,17 +459,22 @@ export default function Footer() {
           </FooterLinkColumn>
         </div>
 
-        <div className="mo-footer__social">
-          <ul className="mo-social-media mo-social-media--list" role="list">
-            <li className="mo-social-media__item">
+        <div className="mb-10 flex w-full justify-start">
+          <ul
+            className="m-0 flex list-none flex-wrap items-center gap-3 gap-x-8 p-0"
+            role="list"
+          >
+            <li>
               <a
-                className="mo-social-media__link"
+                className={FOOTER_SOCIAL_LINK}
                 href="https://www.instagram.com/IDAcademy"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow on Instagram"
               >
-                <IconInstagram />
+                <span className="h-4 w-4 [&_svg]:h-4 [&_svg]:w-4">
+                  <IconInstagram />
+                </span>
                 Follow us on instagram!
               </a>
             </li>
@@ -460,15 +482,19 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="mo-footer-bottom">
-        <p>© 2026 - Dental Nutrition. All Rights Reserved.</p>
-        <ul>
+      <div className="flex flex-col items-center justify-evenly gap-4 bg-white px-5 py-4 pb-8 text-center text-xs tracking-[0.05em] text-[var(--mo-brown)] md:flex-row md:justify-between md:p-12">
+        <p className="m-0 whitespace-nowrap">© 2026 - Dental Nutrition. All Rights Reserved.</p>
+        <ul className="m-0 grid list-none grid-cols-2 gap-y-2 p-0 whitespace-nowrap md:flex md:flex-wrap md:justify-end md:gap-0">
           {LEGAL_LINKS.map((link) => (
-            <li key={link.label}>
+            <li key={link.label} className="px-[2px] text-xs uppercase md:px-4">
               {link.href.startsWith("http") ? (
-                <a href={link.href}>{link.label}</a>
+                <a href={link.href} className={FOOTER_LEGAL_LINK}>
+                  {link.label}
+                </a>
               ) : (
-                <Link href={link.href}>{link.label}</Link>
+                <Link href={link.href} className={FOOTER_LEGAL_LINK}>
+                  {link.label}
+                </Link>
               )}
             </li>
           ))}

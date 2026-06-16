@@ -1,25 +1,17 @@
 import { notFound } from "next/navigation";
 import Navbar from "../../../Common/Navbar/Navbar";
 import Footer from "../../../Common/Footer/Footer";
-import { ProductDetail } from "../../../Products/Bits/Bits";
+import { ProductDetail as SmartsProductDetail } from "../../../Products/Smarts/Smarts";
+import { ProductDetail as LollipopsProductDetail } from "../../../Products/Lollipops/Lollipops";
 import { getAllBitsProductSlugs } from "../../../Products/Bits/bitsProducts";
-import { LollipopsProductDetail } from "../../../Products/Lollipops/Lollipops";
 import { getAllLollipopsProductSlugs } from "../../../Products/Lollipops/lollipopsProducts";
-import { MouthwashProductDetail } from "../../../Products/Mouthwash/Mouthwash";
 import { getAllMouthwashProductSlugs } from "../../../Products/Mouthwash/mouthwashProducts";
-import { SmartsProductDetail } from "../../../Products/Smarts/Smarts";
 import { getAllSmartsProductSlugs } from "../../../Products/Smarts/smartsProducts";
 import {
+  COLLECTION_BY_CATEGORY,
   COLLECTION_PAGES,
   getProductForCategory,
 } from "../../../Products/productRoutes";
-
-const PRODUCT_DETAIL_COMPONENTS = {
-  bits: ProductDetail,
-  lollipops: LollipopsProductDetail,
-  mouthwash: MouthwashProductDetail,
-  smarts: SmartsProductDetail,
-};
 
 export async function generateStaticParams() {
   return [
@@ -61,16 +53,18 @@ export default async function ProductPage({ params }) {
   }
 
   const product = getProductForCategory(category, slug);
-  const ProductDetailComponent = PRODUCT_DETAIL_COMPONENTS[category];
+  const collection = COLLECTION_BY_CATEGORY[category];
 
-  if (!product || !ProductDetailComponent) {
+  if (!product || !collection) {
     notFound();
   }
+
+  const ProductDetailComponent = category === "lollipops" ? LollipopsProductDetail : SmartsProductDetail;
 
   return (
     <>
       <Navbar />
-      <ProductDetailComponent product={product} category={category} />
+      <ProductDetailComponent product={product} collection={collection} />
       <Footer />
     </>
   );

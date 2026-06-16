@@ -3,6 +3,8 @@ const CDN = "https://moroccanoilprofessionals.com/cdn/shop/files";
 export const BITS_COLLECTION = {
   title: "Dental Wellness Bits",
   href: "/Products/bits",
+  description:
+    "Promote your pet's oral health with our delicious and effective dental wellness bits.",
 };
 
 export const BITS_PRODUCTS = [
@@ -82,14 +84,14 @@ const DENTA_BITS_DETAIL = {
   gallery: [
     "/Products/DentaBits/Dentabits.png",
   ],
-  tagline: "Daily Dental Wellness Bits for Dogs",
+  tagline: "Daily probiotic dental care for fresher breath and healthier gums",
   description:
-    "Denta Bits are a delicious and effective way to support your dog's dental health. These daily dental wellness bits help reduce plaque and tartar buildup, freshen breath, and promote healthy gums.",
+    "Denta Bits are swallow-safe dental wellness bits designed for adults, teens, diabetics, smokers, and anyone needing reliable all-day oral freshness and microbial balance. Unlike mints or chewing gum that only mask odour, Denta Bits support oral health at the microbial level. The probiotic and essential oil formulation helps reduce harmful bacteria, support saliva flow, lower plaque and gum swelling, refresh breath without chemicals, and improve dryness related to smoking or stress. Portable and dentist-approved, Denta Bits are ideal for daily oral wellness on the go.",
   howToUse:
-    "Give one Denta Bit daily as a treat. For best results, use consistently as part of your dog's dental hygiene routine.",
+    "Take one Denta Bit as needed for all-day oral freshness. Swallow-safe for daily use. Ideal for on-the-go oral wellness.",
   benefits:
-    "Helps reduce plaque and tartar, freshens breath, supports healthy gums, and is a tasty treat your dog will love.",
-  ingredients: DEFAULT_KEY_INGREDIENTS, // You might want to define specific ingredients for Denta Bits
+    "Up to 99% reduction in harmful bacteria. Long-lasting fresh breath. Supports gum health and reduces inflammation. Balances oral microbiome naturally. Safe for diabetics and daily long-term use.",
+  ingredients: DEFAULT_KEY_INGREDIENTS,
   featureImage: "/Products/DentaBits/Dentabits.png",
   related: [
     // Add related products here if any
