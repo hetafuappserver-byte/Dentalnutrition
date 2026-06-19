@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 const FOOTER_LINKS = {
   professionals: [
     { label: "Education", href: "/pages/education" },
-    { label: "Haircolor", href: "/pages/hair-color-home" },
+    { label: "Dental Nutrition", href: "/pages/dental-nutrition" },
     {
       label: "Color Formulation Tool",
       href: "/pages/color-formulation-quiz",

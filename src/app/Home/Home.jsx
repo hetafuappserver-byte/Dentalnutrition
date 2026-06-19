@@ -74,7 +74,7 @@ const COLLECTION_CARDS = [
   },
   {
     label: "Dental Nutrition",
-    href: "/pages/hair-color-home",
+    href: "/pages/dental-nutrition",
     image: `${CDN}/Artboard_2_1.png?v=1771448589&width=720`,
   },
 ];

@@ -12,11 +12,13 @@ export const MOUTHWASH_PRODUCTS = [
     slug: "cute-mouthwash-liquid",
     title: "CUTE Mouthwash Edible Probiotic Mouthwash (Liquid)",
     image: `/Products/CuteMouthwash/Cute.png`,
+    banner: "/Products/CuteMouthwash/MouthwashBg.png",
   },
   {
     slug: "cute-mouthwash-powder",
     title: "CUTE Mouthwash Edible Probiotic Mouthwash (Powder)",
-    image: `/Products/CuteMouthwash/Cute.png`,
+    image: `/Products/CuteMouthwash/cutetablets.png`,
+    banner: "/Products/CuteMouthwash/mouthwashBGpowder.png",
   },
 ];
 
@@ -24,7 +26,7 @@ const PRODUCT_DETAILS = {
   "cute-mouthwash-liquid": {
     tagline: "Edible, pH-neutral probiotic mouthwash gentle enough for kids, effective for all",
     description:
-      "CUTE Mouthwash is a clinically designed, edible probiotic mouthwash that protects enamel, supports oral microbiome balance, and freshens breath without burning or harsh chemicals. Traditional mouthwashes often rely on alcohol and acidic ingredients that irritate the mouth and disrupt good bacteria. CUTE Mouthwash uses a pH-neutral blend of probiotics, prebiotics, essential oils, and enamel-supporting minerals.",
+      "CUTE Mouthwash is a clinically designed, edible probiotic mouthwash that protects enamel, supports oral microbiome balance, and freshens breath without burning or harsh chemicals.",
     benefits:
       "Freshen breath, Reduce harmful bacteria, Protect enamel from acid damage, Support gum comfort and moisture, Maintain oral microbiome balance. Kid-friendly taste with dentist-approved formulation. Alcohol-free and chemical-free with neutral pH 7.62 to protect enamel.",
     howToUse:
@@ -36,7 +38,7 @@ const PRODUCT_DETAILS = {
   "cute-mouthwash-powder": {
     tagline: "Edible, pH-neutral probiotic mouthwash gentle enough for kids, effective for all",
     description:
-      "CUTE Mouthwash is a clinically designed, edible probiotic mouthwash that protects enamel, supports oral microbiome balance, and freshens breath without burning or harsh chemicals. Traditional mouthwashes often rely on alcohol and acidic ingredients that irritate the mouth and disrupt good bacteria. CUTE Mouthwash uses a pH-neutral blend of probiotics, prebiotics, essential oils, and enamel-supporting minerals.",
+      "CUTE Mouthwash is a clinically designed, edible probiotic mouthwash that protects enamel, supports oral microbiome balance, and freshens breath without burning or harsh chemicals.",
     benefits:
       "Freshen breath, Reduce harmful bacteria, Protect enamel from acid damage, Support gum comfort and moisture, Maintain oral microbiome balance. Kid-friendly taste with dentist-approved formulation. Alcohol-free and chemical-free with neutral pH 7.62 to protect enamel.",
     howToUse:
@@ -53,21 +55,29 @@ export function getMouthwashProduct(slug) {
 
   const detail = PRODUCT_DETAILS[slug];
   if (detail) {
-    return { ...base, ...detail, gallery: [base.image], banner: base.image };
+    return {
+      ...base,
+      ...detail,
+      related: MOUTHWASH_PRODUCTS.filter((product) => product.slug !== slug).slice(0, 4),
+    };
   }
+
+  const galleryImage = base.image.replace("&width=600", "&width=1200");
 
   return {
     ...base,
-    banner: base.image,
-    gallery: [base.image],
-    tagline: `For versatile styling with ${base.title}`,
-    description: `${base.title} helps you create versatile looks with high-performing styling formulas infused with antioxidant-rich argan oil.`,
+    banner: galleryImage,
+    gallery: [galleryImage],
+    tagline: "",
+    description:
+      `${base.title} is a dentist-approved, edible probiotic mouthwash designed to support oral hygiene.`,
     howToUse:
-      "Apply to damp or dry hair as desired. Work through sections and style to finish.",
+      "Rinse mouth daily with CUTE Mouthwash for 30-60 seconds. Safe to swallow.",
     benefits:
-      "Provides flexible hold, texture, and shine while nourishing hair with argan oil.",
+      "Supports oral health with probiotics and essential oils for reduced harmful bacteria and fresher breath.",
+    usedFor: "",
+    contactEmail: "reachthebest@hetafu.com",
     ingredients: DEFAULT_KEY_INGREDIENTS,
-    featureImage: null,
     related: MOUTHWASH_PRODUCTS.filter((product) => product.slug !== slug).slice(
       0,
       4,

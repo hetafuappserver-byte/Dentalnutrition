@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation";
 import Navbar from "../../../Common/Navbar/Navbar";
 import Footer from "../../../Common/Footer/Footer";
-import { ProductDetail as SmartsProductDetail } from "../../../Products/Smarts/Smarts";
-import { ProductDetail as LollipopsProductDetail } from "../../../Products/Lollipops/Lollipops";
+import { ProductDetail } from "../../../Products/ProductDetail";
 import { getAllBitsProductSlugs } from "../../../Products/Bits/bitsProducts";
 import { getAllLollipopsProductSlugs } from "../../../Products/Lollipops/lollipopsProducts";
 import { getAllMouthwashProductSlugs } from "../../../Products/Mouthwash/mouthwashProducts";
@@ -59,12 +58,10 @@ export default async function ProductPage({ params }) {
     notFound();
   }
 
-  const ProductDetailComponent = category === "lollipops" ? LollipopsProductDetail : SmartsProductDetail;
-
   return (
     <>
       <Navbar />
-      <ProductDetailComponent product={product} collection={collection} />
+      <ProductDetail product={product} collection={collection} />
       <Footer />
     </>
   );

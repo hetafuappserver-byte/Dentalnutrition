@@ -9,15 +9,33 @@ export const LOLLIPOPS_COLLECTION = {
 
 export const LOLLIPOPS_PRODUCTS = [
   {
-    slug: "dollipops-probiotic-dentist-approved-lollipops",
-    title: "Dollipops Probiotic Dentist Approved Lollipops",
-    image: '/Products/Dollipops/Dollipop.png',
+    slug: "dollipops-probiotic-dentist-approved-lollipops-green-apple",
+    title: "Dollipops Probiotic Dentist Approved Lollipops (Green Apple Flavor)",
+    image: '/Products/Dollipops/DollipopGA.png',
+    banner: '/Products/Dollipops/DollipopGABg.png',
+  },
+  {
+    slug: "dollipops-probiotic-dentist-approved-lollipops-mixed-berry",
+    title: "Dollipops Probiotic Dentist Approved Lollipops (Mixed Berry Flavor)",
+    image: '/Products/Dollipops/DollipopMB.png',
+    banner: '/Products/Dollipops/DollipopMBBg.png',
   },
 ];
 
 const PRODUCT_DETAILS = {
-  "dollipops-probiotic-dentist-approved-lollipops": {
-    banner: '/Products/Dollipops/DollipopBg1.png',
+  "dollipops-probiotic-dentist-approved-lollipops-green-apple": {
+    tagline: "Sugar-free probiotic lollipops that support oral hygiene",
+    description:
+      "Dollipops are dentist approved, sugar free probiotic lollipops designed to support oral hygiene while satisfying sweet cravings.",
+    benefits:
+      "Helps reduce harmful oral bacteria, supports gum healing after dental procedures, sugar-free and diabetic-friendly, probiotic formulation for microbiome balance, safe alternative to sugary treats.",
+    howToUse:
+      "Enjoy one lollipop daily as part of your oral health routine. Suitable for children and adults seeking a dentist-approved, sugar-free treat.",
+    usedFor:
+      "Children with frequent cavities, post-treatment recovery (scaling, extractions, ulcers), kids who resist brushing or mouthwash, diabetic children needing safe treats, adults with dry mouth or smoking habits.",
+    ingredients: DEFAULT_KEY_INGREDIENTS,
+  },
+  "dollipops-probiotic-dentist-approved-lollipops-mixed-berry": {
     tagline: "Sugar-free probiotic lollipops that support oral hygiene",
     description:
       "Dollipops are dentist approved, sugar free probiotic lollipops designed to support oral hygiene while satisfying sweet cravings.",
@@ -37,7 +55,11 @@ export function getLollipopsProduct(slug) {
 
   const detail = PRODUCT_DETAILS[slug];
   if (detail) {
-    return { ...base, ...detail };
+    return {
+      ...base,
+      ...detail,
+      related: LOLLIPOPS_PRODUCTS.filter((product) => product.slug !== slug).slice(0, 4),
+    };
   }
 
   const galleryImage = base.image.replace("&width=600", "&width=1200");
@@ -56,7 +78,6 @@ export function getLollipopsProduct(slug) {
     usedFor: "",
     contactEmail: "reachthebest@hetafu.com",
     ingredients: DEFAULT_KEY_INGREDIENTS,
-    featureImage: null,
     related: LOLLIPOPS_PRODUCTS.filter((product) => product.slug !== slug).slice(
       0,
       4,
