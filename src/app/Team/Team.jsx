@@ -10,7 +10,6 @@ function InstagramIcon() {
       aria-hidden="true"
       focusable="false"
       width="20"
-      className="mo-team__instagram-icon"
       viewBox="0 0 24 24"
     >
       <path
@@ -27,23 +26,28 @@ function TeamModal({ member, onClose }) {
   if (!member) return null;
 
   return (
-    <div className="mo-team-modal" role="dialog" aria-modal="true" aria-labelledby={`team-modal-${member.id}`}>
+    <div
+      className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/80 p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={`team-modal-${member.id}`}
+    >
       <button
         type="button"
-        className="mo-team-modal__overlay"
+        className="absolute inset-0 cursor-pointer border-0 bg-transparent"
         aria-label="Close"
         onClick={onClose}
       />
-      <div className="mo-team-modal__content">
+      <div className="relative m-0 max-h-[80vh] w-[min(100%,600px)] overflow-y-auto rounded-lg bg-white p-8">
         <button
           type="button"
-          className="mo-team-modal__close"
+          className="absolute top-4 right-4 flex h-[30px] w-[30px] cursor-pointer items-center justify-center border-0 bg-transparent p-0 text-2xl leading-none"
           aria-label="Close"
           onClick={onClose}
         >
           ×
         </button>
-        <div className="mo-team-modal__image">
+        <div className="mx-auto mb-4 w-1/2 [&_img]:w-full [&_img]:rounded-full">
           <Image
             src={member.image}
             alt={member.name}
@@ -51,8 +55,11 @@ function TeamModal({ member, onClose }) {
             height={600}
           />
         </div>
-        <div className="mo-team-modal__text">
-          <div className="mo-team-modal__bio" id={`team-modal-${member.id}`}>
+        <div className="text-center">
+          <div
+            className="flex flex-col items-center [&_h1]:m-0 [&_h1]:mb-1 [&_h1]:[font-family:var(--heading-font)] [&_h1]:text-2xl [&_h1]:font-normal [&_h1]:tracking-[0.08em] [&_h1]:uppercase [&_h4]:m-0 [&_h4]:mb-4 [&_h4]:[font-family:var(--heading-font)] [&_h4]:text-base [&_h4]:font-normal [&_p]:m-0 [&_p]:mb-4 [&_p]:max-w-full [&_p]:leading-[1.65]"
+            id={`team-modal-${member.id}`}
+          >
             <h1>{member.name}</h1>
             <h4>{member.role}</h4>
             {member.instagram && (
@@ -61,7 +68,7 @@ function TeamModal({ member, onClose }) {
                   href={member.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mo-team-modal__instagram"
+                  className="inline-flex items-center gap-2 text-[#02c3c2] underline decoration-1"
                 >
                   <InstagramIcon /> {member.instagramHandle}
                 </a>
@@ -72,7 +79,7 @@ function TeamModal({ member, onClose }) {
                 return (
                   <div key={index}>
                     <p>{paragraph}</p>
-                    <ul className="mo-team-modal__achievements">
+                    <ul className="mb-4 list-disc pl-5 text-left">
                       {member.achievements.map((item) => (
                         <li key={item}>{item}</li>
                       ))}
@@ -124,35 +131,42 @@ export default function Team() {
   }, [activeId, closeModal]);
 
   return (
-    <main id="main" className="mo-team">
-      <section className="mo-team-hero" aria-label="Meet the Team hero">
+    <main id="main" className="bg-[#fcfcfc] text-[#401e17]">
+      <section className="w-full overflow-hidden" aria-label="Meet the Team hero">
         <Image
           src={TEAM_PAGE.hero}
           alt=""
           width={2000}
           height={960}
           priority
-          className="mo-team-hero__image"
+          className="h-auto min-h-[280px] w-full object-cover min-[700px]:min-h-[420px]"
         />
       </section>
 
-      <section className="mo-team-section mo-team-section--center">
-        <p className="mo-team-title">{TEAM_PAGE.title}</p>
+      <section className="mx-auto max-w-[1200px] px-5 py-8 text-center md:px-8 md:py-10">
+        <p className="m-0 [font-family:var(--heading-font)] text-[clamp(1.75rem,4vw,2.5rem)] font-normal tracking-[0.05em] lowercase">
+          {TEAM_PAGE.title}
+        </p>
       </section>
 
       {TEAM_PAGE.sections.map((section) => (
         <div key={section.title}>
-          <section className="mo-team-section mo-team-section--center">
-            <p className="mo-team-heading">{section.title}</p>
+          <section className="mx-auto max-w-[1200px] px-5 py-8 text-center md:px-8 md:py-10">
+            <p className="m-0 [font-family:var(--heading-font)] text-[clamp(1.25rem,3vw,1.75rem)] font-normal capitalize">
+              {section.title}
+            </p>
           </section>
 
-          <section className="mo-team-section">
-            <div className="mo-team-grid">
+          <section className="mx-auto max-w-[1200px] px-5 py-8 md:px-8 md:py-10">
+            <div className="grid grid-cols-2 gap-x-5 gap-y-8 min-[700px]:grid-cols-4 min-[700px]:gap-x-8 min-[700px]:gap-y-10">
               {section.members.map((member) => (
-                <article key={member.modalId} className="mo-team-card">
+                <article
+                  key={member.modalId}
+                  className="flex flex-col items-center gap-4 text-center"
+                >
                   <button
                     type="button"
-                    className="mo-team-card__photo"
+                    className="aspect-square w-[min(100%,220px)] cursor-pointer overflow-hidden rounded-full border-0 bg-transparent p-0 hover:[&_img]:scale-105"
                     onClick={() => setActiveId(member.modalId)}
                     aria-label={`View bio for ${member.name}`}
                   >
@@ -161,12 +175,14 @@ export default function Team() {
                       alt=""
                       width={600}
                       height={600}
-                      className="mo-team-card__image"
+                      className="h-full w-full object-cover transition-transform duration-[350ms]"
                     />
                   </button>
-                  <div className="mo-team-card__info">
-                    <p className="mo-team-card__name">{member.name}</p>
-                    <h6 className="mo-team-card__role">
+                  <div className="flex flex-col gap-[0.35rem]">
+                    <p className="m-0 [font-family:var(--heading-font)] text-lg font-normal tracking-[0.04em] uppercase">
+                      {member.name}
+                    </p>
+                    <h6 className="m-0 [font-family:var(--body-font)] text-sm font-normal tracking-[0.08em] uppercase">
                       {member.gridRole || member.role}
                     </h6>
                   </div>

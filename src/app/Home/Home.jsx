@@ -159,7 +159,7 @@ export default function Home() {
   const products = HETAFU_PRODUCTS;
 
   return (
-    <main id="main">
+    <main id="main" style={{backgroundColor: "#F2F2F2"}}>
       <section className="relative h-[80vh] overflow-hidden bg-black" aria-label="Featured banners">
         <button
           type="button"
@@ -234,7 +234,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-5 py-10 text-center md:px-8 md:py-16">
+      <section className="px-5 py-10 text-center md:px-8 md:py-16" >
         <p className="[font-family:var(--heading-font)] text-[30px] font-normal tracking-[0.1em] uppercase">
           DISCOVER OUR PRODUCTS
         </p>

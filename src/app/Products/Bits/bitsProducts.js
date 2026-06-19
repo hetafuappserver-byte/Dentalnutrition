@@ -11,7 +11,7 @@ export const BITS_PRODUCTS = [
   {
     slug: "denta-bits-daily-dental-wellness-bits",
     title: "Denta Bits",
-    image: "/Products/DentaBits/Dentabits.png",
+    image: "/Products/DentaBits/Dentabits1.png",
   },
 ];
 
@@ -80,9 +80,9 @@ const CLARIFYING_SHAMPOO_DETAIL = {
 };
 
 const DENTA_BITS_DETAIL = {
-  banner: "/Products/DentaBits/Dentabits.png",
+  banner: "/Products/DentaBits/Dentabits1.png",
   gallery: [
-    "/Products/DentaBits/Dentabits.png",
+    "/Products/DentaBits/Dentabits1.png",
   ],
   tagline: "Daily probiotic dental care for fresher breath and healthier gums",
   description:
@@ -92,7 +92,7 @@ const DENTA_BITS_DETAIL = {
   benefits:
     "Up to 99% reduction in harmful bacteria. Long-lasting fresh breath. Supports gum health and reduces inflammation. Balances oral microbiome naturally. Safe for diabetics and daily long-term use.",
   ingredients: DEFAULT_KEY_INGREDIENTS,
-  featureImage: "/Products/DentaBits/Dentabits.png",
+  featureImage: "/Products/DentaBits/Dentabits1.png",
   related: [
     // Add related products here if any
   ],

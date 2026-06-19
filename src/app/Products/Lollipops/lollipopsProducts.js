@@ -11,15 +11,16 @@ export const LOLLIPOPS_PRODUCTS = [
   {
     slug: "dollipops-probiotic-dentist-approved-lollipops",
     title: "Dollipops Probiotic Dentist Approved Lollipops",
-    image: `${CDN}/Artboard_1_2d0de360-8a8b-4a9d-984c-6fff8a6cd6f7.png?v=1767904911&width=600`,
+    image: '/Products/Dollipops/Dollipop.png',
   },
 ];
 
 const PRODUCT_DETAILS = {
   "dollipops-probiotic-dentist-approved-lollipops": {
+    banner: '/Products/Dollipops/DollipopBg1.png',
     tagline: "Sugar-free probiotic lollipops that support oral hygiene",
     description:
-      "Dollipops are dentist approved, sugar free probiotic lollipops designed to support oral hygiene while satisfying sweet cravings. They combine probiotics, essential oils, and sugar-free sweeteners to help reduce harmful bacteria, freshen breath, and support healthier gums.",
+      "Dollipops are dentist approved, sugar free probiotic lollipops designed to support oral hygiene while satisfying sweet cravings.",
     benefits:
       "Helps reduce harmful oral bacteria, supports gum healing after dental procedures, sugar-free and diabetic-friendly, probiotic formulation for microbiome balance, safe alternative to sugary treats.",
     howToUse:

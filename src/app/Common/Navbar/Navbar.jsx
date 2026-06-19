@@ -59,7 +59,7 @@ const NAV_ITEMS = [
     flatLinks: [
       { label: "Meet the Team", href: "/pages/meet-the-team" },
       { label: "Sustainability", href: "/pages/sustainability" },
-      { label: "Hetafu VS IDA", href: "/pages/hetafu-vs-ida" },
+      { label: "Hetafu x IDA", href: "/pages/hetafu-vs-ida" },
       { label: "Distribution", href: "/pages/distribution" },
       { label: "Contact us", href: "/pages/contact" },
     ],

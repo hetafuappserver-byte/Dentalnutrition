@@ -23,7 +23,7 @@ const CARDS = [
   {
     title: "Our Community",
     description:
-      "Giving back is a core value for Moroccanoil. Here’s how we’re helping people in need, animals, and the environment.",
+      "Giving back is a core value for Moroccanoil. Here's how we're helping people in need, animals, and the environment.",
     href: "/pages/sustainability-community",
     image: `${CDN}/Artboard_5_2.png?v=1771859627&width=600`,
   },
@@ -34,57 +34,69 @@ const INTRO = [
   "We are always finding new ways to put our values into action, including our journey to become more sustainable. We are focusing on the vital areas where we can make a difference today, and constantly learning how we can do even better.",
 ];
 
+const CARD_LINK =
+  "mt-1 inline-flex items-center justify-center border border-[#401e17] px-5 py-[0.65rem] [font-family:var(--body-font)] text-sm font-bold tracking-[0.18em] uppercase no-underline transition-[color,background,border-color] duration-[250ms] hover:border-[#02c3c2] hover:bg-[#02c3c2] hover:text-white";
+
 export default function Sustainablity() {
   return (
-    <main id="main" className="mo-sustainability">
-      <section className="mo-sus-hero" aria-label="Sustainability hero">
+    <main id="main" className="bg-[#fcfcfc] text-[#401e17]">
+      <section className="w-full overflow-hidden" aria-label="Sustainability hero">
         <Image
           src={HERO}
           alt=""
           width={2000}
           height={1000}
           priority
-          className="mo-sus-hero__image"
+          className="h-auto min-h-[240px] w-full object-cover min-[700px]:min-h-[420px]"
         />
       </section>
 
-      <section className="mo-sus-section mo-sus-section--center">
-        <h1 className="mo-sus-title">Inspiring a Beautiful World</h1>
-        <div className="mo-sus-intro">
+      <section className="mx-auto max-w-[1200px] px-5 py-10 text-center md:px-8 md:py-14">
+        <h1 className="m-0 mb-5 [font-family:var(--heading-font)] text-[clamp(1.75rem,4vw,2.5rem)] font-normal tracking-[0.05em] capitalize">
+          Inspiring a Beautiful World
+        </h1>
+        <div className="mx-auto max-w-[820px] [&_p]:m-0 [&_p]:mb-4 [&_p]:text-lg [&_p]:leading-[1.65] [&_p:last-child]:mb-0">
           {INTRO.map((paragraph) => (
             <p key={paragraph.slice(0, 40)}>{paragraph}</p>
           ))}
         </div>
       </section>
 
-      <section className="mo-sus-section">
-        <div className="mo-sus-grid">
+      <section className="mx-auto max-w-[1200px] px-5 py-10 md:px-8 md:py-14">
+        <div className="grid grid-cols-[repeat(3,minmax(280px,1fr))] gap-8 overflow-x-auto pb-2 [scroll-snap-type:x_mandatory] max-[999px]:-mx-5 max-[999px]:grid-cols-[repeat(3,minmax(75vw,1fr))] max-[999px]:gap-5 max-[999px]:px-5">
           {CARDS.map((card) => (
-            <article key={card.title} className="mo-sus-card">
-              <Link href={card.href} className="mo-sus-card__image-link">
+            <article
+              key={card.title}
+              className="flex snap-center flex-col items-stretch gap-5 text-start"
+            >
+              <Link href={card.href} className="block w-full overflow-hidden">
                 <Image
                   src={card.image}
                   alt=""
                   width={600}
                   height={600}
-                  className="mo-sus-card__image"
+                  className="h-auto w-full object-cover transition-transform duration-[350ms] hover:scale-[1.03]"
                 />
               </Link>
-              <article className="mo-oceana-info__item mo-sus-card__content">
-                <h2 className="mo-oceana-info__title">{card.title}</h2>
-                <p className="mo-oceana-info__text">{card.description}</p>
-                <Link href={card.href} className="mo-sus-card__link">
+              <div className="flex w-full flex-col items-start gap-4">
+                <h2 className="m-0 mb-4 [font-family:var(--heading-font)] text-2xl font-normal tracking-[0.04em] capitalize">
+                  {card.title}
+                </h2>
+                <p className="m-0 text-base leading-[1.65]">{card.description}</p>
+                <Link href={card.href} className={CARD_LINK}>
                   LEARN MORE
                 </Link>
-              </article>
+              </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="mo-sus-section mo-sus-section--center">
-        <h2 className="mo-sus-title">get involved</h2>
-        <p className="mo-sus-cta">
+      <section className="mx-auto max-w-[1200px] px-5 py-10 text-center md:px-8 md:py-14">
+        <h2 className="m-0 mb-5 [font-family:var(--heading-font)] text-[clamp(1.75rem,4vw,2.5rem)] font-normal tracking-[0.05em] capitalize">
+          get involved
+        </h2>
+        <p className="mx-auto max-w-[720px] text-lg leading-[1.65] [&_a]:text-[#02c3c2] [&_a]:underline [&_a]:underline-offset-[0.15em]">
           What matters to you matters to us. If you want to know more about our
           sustainability efforts, send an email to{" "}
           <a href="mailto:info@dentalnutrition.com">info@dentalnutrition.com</a>.

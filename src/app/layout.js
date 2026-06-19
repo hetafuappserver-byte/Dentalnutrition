@@ -1,6 +1,4 @@
 import "./globals.css";
-import "./hetafu.css";
-
 export const metadata = {
   title:
     "What is Dental Nutrition? | Hetafu",
@@ -12,7 +10,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className="mo-site min-h-full flex flex-col"
+        className="m-0 min-h-full flex flex-col bg-[#fcfcfc] text-[#401e17] [font-family:var(--body-font)] text-base leading-[1.65] tracking-[0.02em] [&_a]:text-inherit [&_a]:no-underline [&_img]:block [&_img]:h-auto [&_img]:max-w-full [&_ul]:m-0 [&_ul]:list-none [&_ul]:p-0"
         suppressHydrationWarning
       >
         {children}

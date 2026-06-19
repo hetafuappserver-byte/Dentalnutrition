@@ -7,6 +7,9 @@ import ClassTypesNav from "../ClassTypes/ClassTypesNav";
 
 const CDN = "https://moroccanoilprofessionals.com/cdn/shop/files";
 
+const BTN_OUTLINE =
+  "inline-flex items-center justify-center border border-current px-6 py-[0.85rem] [font-family:var(--body-font)] text-[0.9375rem] font-bold tracking-[0.18em] uppercase transition-[color,background] duration-200 hover:text-[#401e17]";
+
 const HERO = `${CDN}/77d9af7ab1001b34862cfd6c2f995135b47df2d0.jpg?v=1777992000&width=2000`;
 
 const INTRO_COPY =
@@ -103,10 +106,10 @@ function CertificationTimeline() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section className="mo-academy-cert-timeline" aria-label="Certification paths">
-      <div className="mo-academy-cert-timeline__inner">
-        <article className="mo-academy-cert-timeline__slide">
-          <div className="mo-academy-cert-timeline__image-wrap">
+    <section className="bg-[#fcfcfc] py-10 pb-12 min-[700px]:py-16" aria-label="Certification paths">
+      <div className="mx-auto max-w-[980px] px-5 min-[700px]:px-8">
+        <article className="grid items-center gap-8 min-[900px]:grid-cols-2 min-[900px]:gap-12">
+          <div className="grid w-full [&>*]:col-start-1 [&>*]:row-start-1">
             {CERTIFICATION_TABS.map((tab, index) => (
               <Image
                 key={tab.id}
@@ -114,28 +117,34 @@ function CertificationTimeline() {
                 alt=""
                 width={960}
                 height={540}
-                className={`mo-academy-cert-timeline__image${
-                  index === activeTab ? " is-active" : ""
+                className={`block h-auto w-full object-cover object-center transition-[opacity,transform] duration-[450ms] ${
+                  index === activeTab
+                    ? "scale-100 opacity-100 pointer-events-auto"
+                    : "scale-[1.02] opacity-0 pointer-events-none"
                 }`}
               />
             ))}
           </div>
 
-          <div className="mo-academy-cert-timeline__content">
+          <div className="grid items-center [&>*]:col-start-1 [&>*]:row-start-1">
             {CERTIFICATION_TABS.map((tab, index) => (
               <div
                 key={tab.id}
-                className={`mo-academy-cert-timeline__panel${
-                  index === activeTab ? " is-active" : ""
+                className={`mx-auto max-w-[430px] text-center transition-[opacity,transform] duration-[450ms] min-[900px]:mx-0 min-[900px]:text-left ${
+                  index === activeTab
+                    ? "translate-y-0 opacity-100 pointer-events-auto"
+                    : "translate-y-3 opacity-0 pointer-events-none"
                 }`}
                 role="tabpanel"
                 aria-hidden={index !== activeTab}
               >
-                <p className="mo-academy-cert-timeline__eyebrow">{tab.eyebrow}</p>
-                <h2 className="mo-academy-cert-timeline__title">{tab.title}</h2>
-                <p className="mo-academy-cert-timeline__description">{tab.description}</p>
+                <p className="m-0 mb-2 text-sm tracking-[0.08em] uppercase">{tab.eyebrow}</p>
+                <h2 className="m-0 mb-4 [font-family:var(--heading-font)] text-[clamp(1.5rem,3vw,2rem)] font-bold capitalize">
+                  {tab.title}
+                </h2>
+                <p className="m-0 mb-5 leading-[1.65]">{tab.description}</p>
                 {tab.href && tab.cta && (
-                  <Link href={tab.href} className="mo-button mo-button--outline">
+                  <Link href={tab.href} className={BTN_OUTLINE}>
                     {tab.cta}
                   </Link>
                 )}
@@ -144,15 +153,15 @@ function CertificationTimeline() {
           </div>
         </article>
 
-        <div className="mo-academy-cert-timeline__nav" role="tablist">
+        <div className="mt-6 flex flex-wrap justify-center gap-1" role="tablist">
           {CERTIFICATION_TABS.map((tab, index) => (
             <button
               key={tab.id}
               type="button"
               role="tab"
               aria-selected={activeTab === index}
-              className={`mo-academy-cert-timeline__tab${
-                activeTab === index ? " is-active" : ""
+              className={`cursor-pointer border-0 bg-transparent px-4 py-3 [font-family:var(--heading-font)] text-[clamp(0.875rem,2vw,1.125rem)] tracking-[0.04em] capitalize transition-[opacity,font-weight] duration-[250ms] ${
+                activeTab === index ? "font-semibold opacity-100" : "opacity-55"
               }`}
               onClick={() => setActiveTab(index)}
             >
@@ -169,24 +178,26 @@ export default function AcademyCertification() {
   const introParagraphs = INTRO_COPY.split("\n");
 
   return (
-    <main id="main" className="mo-academy-cert">
+    <main id="main" className="bg-[#fcfcfc] text-[#401e17]">
       <ClassTypesNav activeLabel="Academy Certification Program" />
 
-      <section className="mo-academy-cert-hero" aria-label="Academy Certification">
+      <section className="w-full overflow-hidden" aria-label="Academy Certification">
         <Image
           src={HERO}
           alt=""
           width={2000}
           height={1200}
           priority
-          className="mo-academy-cert-hero__image"
+          className="block h-auto w-full object-cover"
         />
       </section>
 
-      <section className="mo-academy-cert-intro">
-        <div className="mo-academy-cert-intro__prose">
-          <h1 className="mo-academy-cert-intro__title">Moroccanoil Academy Certification</h1>
-          <div className="mo-academy-cert-intro__richtext">
+      <section className="border-y border-[rgba(64,30,23,0.12)] px-5 py-12 md:px-8 md:py-16">
+        <div className="mx-auto max-w-[720px] text-center">
+          <h1 className="m-0 mb-5 [font-family:var(--heading-font)] text-[clamp(1.75rem,4vw,2.5rem)] font-bold capitalize">
+            Moroccanoil Academy Certification
+          </h1>
+          <div className="[&_p]:m-0 [&_p]:leading-[1.65] [&_p+p]:mt-4">
             {introParagraphs.map((paragraph, index) => (
               <p key={index}>{paragraph}</p>
             ))}
@@ -196,13 +207,17 @@ export default function AcademyCertification() {
 
       <CertificationTimeline />
 
-      <section className="mo-academy-cert-benefits" aria-label="Exclusive benefits">
-        <h2 className="mo-academy-cert-benefits__heading">Exclusive benefits</h2>
-        <div className="mo-academy-cert-benefits__grid">
+      <section className="mx-auto max-w-[1200px] px-5 py-12 md:px-8 md:py-16" aria-label="Exclusive benefits">
+        <h2 className="m-0 mb-8 text-center [font-family:var(--heading-font)] text-[clamp(1.75rem,4vw,2.5rem)] font-bold capitalize">
+          Exclusive benefits
+        </h2>
+        <div className="grid gap-10 min-[900px]:grid-cols-2 min-[900px]:gap-12">
           {BENEFIT_COLUMNS.map((column) => (
-            <article key={column.title} className="mo-academy-cert-benefits__column">
-              <h3 className="mo-academy-cert-benefits__title">{column.title}</h3>
-              <ul className="mo-academy-cert-benefits__list">
+            <article key={column.title}>
+              <h3 className="m-0 mb-4 [font-family:var(--heading-font)] text-lg font-bold capitalize">
+                {column.title}
+              </h3>
+              <ul className="m-0 pl-5 leading-[1.65] [&_li+li]:mt-2">
                 {column.items.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -212,46 +227,58 @@ export default function AcademyCertification() {
         </div>
       </section>
 
-      <section className="mo-academy-cert-catalog" aria-label="Class catalog">
-        <h2 className="mo-academy-cert-catalog__heading">Class catalog</h2>
-        <div className="mo-academy-cert-catalog__scroll">
+      <section className="mx-auto max-w-[1200px] px-5 pb-12 md:px-8 md:pb-16" aria-label="Class catalog">
+        <h2 className="m-0 mb-8 text-center [font-family:var(--heading-font)] text-[clamp(1.75rem,4vw,2.5rem)] font-bold capitalize">
+          Class catalog
+        </h2>
+        <div className="flex gap-6 overflow-x-auto pb-2 [scroll-snap-type:x_mandatory] [-webkit-overflow-scrolling:touch] min-[999px]:grid min-[999px]:grid-cols-3 min-[999px]:overflow-visible">
           {CLASS_CATALOG.map((item) => (
-            <Link key={item.title} href={item.href} className="mo-academy-cert-catalog__card">
-              <div className="mo-academy-cert-catalog__media">
+            <Link
+              key={item.title}
+              href={item.href}
+              className="shrink-0 snap-center text-inherit no-underline [flex-basis:min(53vw,320px)] min-[700px]:[flex-basis:38vw] min-[999px]:flex-none"
+            >
+              <div className="aspect-square overflow-hidden [&_img]:h-full [&_img]:w-full [&_img]:object-cover [&_img]:transition-transform [&_img]:duration-300 hover:[&_img]:scale-[1.03]">
                 <Image src={item.image} alt="" width={960} height={960} />
               </div>
-              <p className="mo-academy-cert-catalog__title">{item.title}</p>
+              <p className="mt-3 mb-0 text-center [font-family:var(--heading-font)] text-base font-bold capitalize">
+                {item.title}
+              </p>
             </Link>
           ))}
         </div>
       </section>
 
-      <section className="mo-edu-section mo-edu-about mo-academy-cert-about">
-        <div className="mo-edu-about__media">
+      <section className="mx-auto grid max-w-[1100px] items-center gap-10 px-5 py-10 min-[1000px]:grid-cols-[minmax(0,1fr)_375px] min-[1000px]:gap-12 md:px-8 md:py-14">
+        <div className="relative min-h-[420px]">
           <Image
             src={`${CDN}/Artboard_1_5.png?v=1771863134&width=500`}
             alt=""
             width={500}
             height={650}
-            className="mo-edu-about__photo mo-edu-about__photo--primary"
+            className="relative z-[1] ml-auto mr-[10%] h-auto w-[min(100%,320px)] object-cover min-[700px]:w-[min(72%,420px)]"
           />
           <Image
             src={`${CDN}/Artboard_2_6.png?v=1771863134&width=500`}
             alt=""
             width={500}
             height={650}
-            className="mo-edu-about__photo mo-edu-about__photo--secondary"
+            className="absolute bottom-0 left-0 z-[2] h-auto w-[min(55%,260px)] object-cover"
           />
         </div>
-        <div className="mo-edu-about__content">
-          <p className="mo-edu-about__eyebrow">About</p>
-          <h2 className="mo-academy-cert-about__title">Moroccanoil Academy</h2>
-          <p className="mo-edu-about__text">
+        <div className="max-w-[375px]">
+          <p className="m-0 mb-2 [font-family:var(--heading-font)] text-sm tracking-[0.1em] uppercase">
+            About
+          </p>
+          <h2 className="m-0 mb-4 [font-family:var(--heading-font)] text-[clamp(1.5rem,3vw,2rem)] font-bold capitalize">
+            Moroccanoil Academy
+          </h2>
+          <p className="m-0 mb-5 leading-[1.65]">
             Based in New York City, Moroccanoil is proud to present the Moroccanoil Academy,
             an advanced facility designed to provide on-site, customized education to stylists
             at any level of their career.
           </p>
-          <div className="mo-edu-about__address">
+          <div className="mb-6 flex items-start gap-2 [&_p]:m-0 [&_p]:leading-normal">
             <IconLocation />
             <p>
               135 East 57th Street, 12th floor
@@ -263,7 +290,7 @@ export default function AcademyCertification() {
             href="https://maps.app.goo.gl/Pjj7rwg11qUbNUXr7"
             target="_blank"
             rel="noopener noreferrer"
-            className="mo-button mo-button--outline mo-academy-cert-about__cta"
+            className={`${BTN_OUTLINE} lowercase`}
           >
             find us
           </Link>

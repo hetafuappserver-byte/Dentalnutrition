@@ -131,22 +131,22 @@ function IconInstagram() {
 }
 
 const FOOTER_HEADING =
-  "m-0 mb-4 [font-family:var(--heading-font)] text-sm font-semibold tracking-[0.08em] uppercase";
+  "m-0 mb-4 [font-family:var(--heading-font)] text-[1.75rem] font-semibold tracking-[0.08em] uppercase";
 
 const FOOTER_LINK =
-  "text-[0.9375rem] no-underline transition-opacity hover:!underline";
+  "text-[1rem] no-underline transition-opacity";
 
 const FOOTER_LEGAL_LINK =
-  "text-[var(--mo-teal)] no-underline transition-opacity hover:!underline";
+  "text-[var(--mo-teal)] no-underline transition-opacity";
 
 const FOOTER_SOCIAL_LINK =
   "inline-flex items-center gap-[0.65rem] text-[0.9375rem] opacity-65 no-underline transition-opacity duration-200 hover:opacity-100";
 
 function FooterLinkColumn({ title, links, children }) {
   return (
-    <div className="md:max-w-[17rem] md:flex-[0_1_17rem]">
+    <div className="md:max-w-[90rem] md:flex-[0_2_20rem]">
       <p className={FOOTER_HEADING}>{title}</p>
-      <ul className="m-0 flex list-none flex-col gap-[0.65rem] p-0">
+      <ul className="m-0 flex list-none flex-col gap-[1.55rem] p-0">
         {links.map((link) => (
           <li key={link.label}>
             {link.href.startsWith("http") ? (
@@ -383,12 +383,12 @@ function SpotlightCarousel() {
 export default function Footer() {
   return (
     <footer className="bg-[#c9f5f5] text-[var(--mo-brown)]">
-      <div className="mx-auto grid max-w-[1425px] gap-10 px-5 pt-10 pb-0 md:gap-12 md:px-8 md:pt-12 lg:px-12">
+      <div className="mx-auto grid max-w-[1600px] gap-10 px-5 pt-10 pb-0 md:gap-12 md:px-8 md:pt-12 lg:px-12">
         <div className="text-center">
           <p className={`${FOOTER_HEADING} mb-2`}>Find your community</p>
           <p className="m-0 text-2xl leading-tight">
             <a
-              href="https://www.instagram.com/IDAcademy"
+              href="https://www.instagram.com/hetafu_/"
               target="_blank"
               rel="noopener noreferrer"
               className="no-underline transition-opacity duration-200 hover:!opacity-75"
@@ -398,12 +398,12 @@ export default function Footer() {
           </p>
         </div>
 
-        <div className="grid items-start gap-10 md:flex md:flex-wrap md:justify-between md:gap-12 min-[1150px]:gap-x-20">
+        <div className="grid items-start gap-10 md:flex md:flex-wrap md:justify-between md:gap-12 min-[1150px]:gap-x-32">
           <div className="md:mx-auto md:w-full md:max-w-full md:flex-[0_0_100%]">
             <SpotlightCarousel />
           </div>
 
-          <div className="md:max-w-80 md:flex-[1_1_14rem]">
+          <div className="md:max-w-96 md:flex-[1_1_16rem]">
             <p className={FOOTER_HEADING}>Stay in the know</p>
             <p className="m-0 mb-5 text-[0.9375rem] leading-relaxed">
               Stay in the loop about exclusive offers and the latest product
