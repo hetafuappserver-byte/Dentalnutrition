@@ -9,19 +9,19 @@ const LOGO = "/Logos/LogoBlack.svg";
 const NAV_ITEMS = [
   {
     label: "Education",
-    href: "/pages/education",
+    href: "/education",
     discover: "Discover Hetafu Academy Education",
     groups: [
       {
         title: "In-Person",
         links: [
-          { label: "All Classes", href: "/pages/all-classes" },
-          { label: "Course Types", href: "/pages/class-types" },
-          { label: "IDA Academy", href: "/pages/education" },
-          { label: "Academy on the Road", href: "/pages/academy-on-the-road" },
+          { label: "All Classes", href: "/all-classes" },
+          { label: "Course Types", href: "/class-types" },
+          { label: "IDA Academy", href: "/education" },
+          { label: "Academy on the Road", href: "/academy-on-the-road" },
           {
             label: "Academy Certification Program",
-            href: "/pages/academy-certification",
+            href: "/academy-certification",
           },
         ],
       },
@@ -39,7 +39,7 @@ const NAV_ITEMS = [
   },
   {
     label: "Product Knowledge",
-    href: "/pages/product-knowledge",
+    href: "/product-knowledge",
     discover: "Discover Product Knowledge",
     groups: [
       {
@@ -55,13 +55,13 @@ const NAV_ITEMS = [
   },
   {
     label: "About Us",
-    href: "/pages/meet-the-team",
+    href: "/meet-the-team",
     flatLinks: [
-      { label: "Meet the Team", href: "/pages/meet-the-team" },
-      { label: "Sustainability", href: "/pages/sustainability" },
-      { label: "Hetafu x IDA", href: "/pages/hetafu-vs-ida" },
-      { label: "Distribution", href: "/pages/distribution" },
-      { label: "Contact us", href: "/pages/contact" },
+      { label: "Meet the Team", href: "/meet-the-team" },
+      { label: "Sustainability", href: "/sustainability" },
+      { label: "Hetafu x IDA", href: "/hetafu-vs-ida" },
+      { label: "Distribution", href: "/distribution" },
+      { label: "Contact us", href: "/contact" },
     ],
   },
 ];
@@ -326,9 +326,6 @@ export default function Navbar() {
             )}
           </div>
         ))}
-        <Link href="/account/login" className={MOBILE_NAV_ITEM}>
-          Account
-        </Link>
       </div>
     </header>
   );

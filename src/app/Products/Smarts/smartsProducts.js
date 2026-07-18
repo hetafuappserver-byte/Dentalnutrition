@@ -10,25 +10,25 @@ export const SMARTS_COLLECTION = {
 export const SMARTS_PRODUCTS = [
   {
     slug: "junior-smarts-dental-nutrition-kids",
-    title: "Junior Smarts Dental Nutrition for Kids",
+    title: "Junior Smarts",
     image: `/Products/DentaSmarts/Juniorsmarts.webp`,
     banner: "/Products/DentaSmarts/dentasmartsbg.png",
   },
   {
     slug: "pink-smarts-dental-nutrition-women",
-    title: "Pink Smarts Dental Nutrition for Women",
+    title: "Pink Smarts",
     image: `/Products/DentaSmarts/Pinksmarts.webp`,
     banner: "/Products/DentaSmarts/dentasmartsbg.png",
   },
   {
     slug: "prime-smarts-dental-nutrition-adults",
-    title: "Prime Smarts Dental Nutrition for Adults",
+    title: "Prime Smarts",
     image: `/Products/DentaSmarts/Primesmarts.webp`,
     banner: "/Products/DentaSmarts/dentasmartsbg.png",
   },
   {
     slug: "dia-smarts-dental-nutrition-diabetics",
-    title: "Dia Smarts Dental Nutrition for Diabetics",
+    title: "Dia Smarts",
     image: `/Products/DentaSmarts/Diasmarts.webp`,
     banner: "/Products/DentaSmarts/dentasmartsbg.png",
   },

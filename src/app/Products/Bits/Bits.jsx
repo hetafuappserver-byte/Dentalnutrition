@@ -12,11 +12,11 @@ export { ProductDetail };
 export default function Bits() {
   return (
     <main id="main" className="bg-[#fcfcfc] text-[#401e17]">
-      <div className="px-5 pt-6 md:sticky md:top-40 md:px-0 md:pl-14">
+      <div className="px-5 pt-6 md:px-8 md:pt-6">
         <CollectionBreadcrumb title={BITS_COLLECTION.title} />
       </div>
 
-      <section className="max-w-[680px] mx-auto pt-6 px-5 pb-6 text-center md:pt-14 md:px-8 md:pb-8" aria-label="Collection">
+      <section className="max-w-[1200px] mx-auto pt-6 px-5 pb-6 text-center md:pt-14 md:px-8 md:pb-8" aria-label="Collection">
         <h1 className="font-[Instrument_Sans,sans-serif] text-[clamp(1.75rem,4vw,2.5rem)] font-normal tracking-[0.05em] capitalize m-0 mb-4">
           {BITS_COLLECTION.title}
         </h1>

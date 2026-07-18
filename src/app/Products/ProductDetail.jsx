@@ -62,16 +62,19 @@ export function ProductDetail({ product, collection }) {
 
   return (
     <main id="main" className="bg-[#fcfcfc] text-[#401e17]">
-      <section className="relative pb-10 md:pb-14">
-        <div className="md:hidden px-5 pt-6 pb-2">
+      <section className="relative pb-10 lg:pb-0">
+        <div className="lg:hidden px-5 pt-6 pb-2">
           <Breadcrumb product={product} collection={collection} />
         </div>
-
-        <div
-          className="banner__image hidden md:block w-full h-[580px] bg-cover bg-center relative"
-          style={{ backgroundImage: `url(${banner})` }}
-          aria-hidden="true"
-        >
+        <div className="hidden lg:block w-full overflow-hidden relative" aria-label="Product banner">
+          <Image
+            src={banner}
+            alt={product.title}
+            width={2000}
+            height={900}
+            priority
+            className="h-auto w-full object-cover"
+          />
           <div className="absolute top-14 left-8 z-10">
             <div className="flex justify-start pl-14 font-bold mb-6">
               <Breadcrumb product={product} collection={collection} />
@@ -79,18 +82,18 @@ export function ProductDetail({ product, collection }) {
           </div>
         </div>
 
-        <div className="relative z-[1] mx-auto grid grid-cols-1 min-[900px]:grid-cols-[minmax(0,0.32fr)_minmax(0,0.38fr)] min-[800px]:items-start min-[800px]:gap-60 px-5 pt-6 max-md:max-w-[1200px] md:px-0 md:pt-0 md:-mt-80 md:ml-8 lg:ml-20 xl:ml-40">
-          <div className="max-md:mx-auto max-md:max-w-[min(100%,360px)] w-full">
-            <div className="aspect-square max-md:rounded-none md:rounded-full bg-[#f3f3f3] overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-contain">
+        <div className="relative z-[1] lg:absolute lg:left-50 lg:top-[43%] px-5 lg:px-8">
+          <div className="mx-auto w-full max-w-none lg:max-w-[450px]">
+            <div className="lg:aspect-square lg:rounded-full aspect-square rounded-lg bg-[#f3f3f3] overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover flex items-center justify-center lg:border-8 border-4 border-[#fcfcfc] shadow-lg">
               <Image src={gallery[activeImage]} alt={product.title} width={900} height={900} priority />
             </div>
             {gallery.length > 1 && (
-              <div className="flex flex-wrap justify-center md:justify-start gap-3 mt-4">
+              <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-4">
                 {gallery.map((image, index) => (
                   <button
                     key={image}
                     type="button"
-                    className={`w-14 h-14 sm:w-[72px] sm:h-[72px] p-0 border bg-white cursor-pointer overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-contain ${activeImage === index ? "border-[#401e17]" : "border-black/[0.12]"}`}
+                    className={`w-14 h-14 sm:w-[72px] sm:h-[72px] p-0 border cursor-pointer overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-contain`}
                     aria-label={`View image ${index + 1}`}
                     aria-current={activeImage === index}
                     onClick={() => setActiveImage(index)}
@@ -101,27 +104,28 @@ export function ProductDetail({ product, collection }) {
               </div>
             )}
           </div>
-
-          <div className="max-md:text-center max-md:mx-auto min-[1000px]:text-left min-[800px]:mt-87 min-[800px]:ml-[-70px]">
-            <h1 className="font-[Instrument_Sans,sans-serif] text-[clamp(1.25rem,4vw,1.75rem)] font-normal tracking-[0.02rem] capitalize m-0 mb-3">
+        </div>
+        <div className="max-w-[1200px] mx-auto pt-8 lg:pt-10">
+          <div className="max-lg:text-center max-lg:mx-auto lg:text-left lg:ml-[550px]">
+            <h1 className="font-['Ivy_Mode_Regular',sans-serif] text-[32px] font-normal tracking-[0.02rem] m-0 mb-2 text-justify">
               {product.title}
             </h1>
-            {product.tagline && <p className="text-lg m-0 mb-4 opacity-85">{product.tagline}</p>}
-            <p className="text-base leading-[1.65] m-0 max-w-[540px] max-md:mx-auto">{product.description}</p>
+            {product.tagline && <p className="text-sm lg:text-base m-0 mb-4 text-[#0891b2] font-medium text-justify">{product.tagline}</p>}
+            <p className="text-sm lg:text-base leading-[1.65] m-0 text-gray-700 text-justify">{product.description}</p>
           </div>
         </div>
       </section>
 
       <section className="max-w-[1200px] mx-auto px-5 pb-12 md:px-8 md:pb-16" aria-label="Product details">
         <div className="hidden min-[700px]:block">
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-8 border-b border-black/[0.08] mb-8" role="tablist">
+          <div className="flex flex-wrap justify-center gap-8 border-b border-black/[0.08] mb-8 mt-12" role="tablist">
             {TAB_DEFINITIONS.map((tab) => (
               <button
                 key={tab.id}
                 type="button"
                 role="tab"
                 aria-selected={activeTab === tab.id}
-                className={`bg-transparent border-0 border-b-2 cursor-pointer font-[Instrument_Sans,sans-serif] tracking-[0.12em] uppercase py-4 text-base sm:text-lg mx-2 -mb-px text-inherit ${activeTab === tab.id ? "opacity-100 border-b-[#401e17]" : "opacity-55 border-transparent"}`}
+                className={`bg-transparent border-0 border-b-2 cursor-pointer font-['Futura_BT_Book',sans-serif] tracking-[0.12em] uppercase py-4 text-base sm:text-lg mx-2 -mb-px text-[#401e17] ${activeTab === tab.id ? "opacity-100 border-b-[#401e17]" : "opacity-55 border-transparent"}`}
                 onClick={() => setActiveTab(tab.id)}
               >
                 {tab.label}
@@ -129,8 +133,8 @@ export function ProductDetail({ product, collection }) {
             ))}
           </div>
           <div className="max-w-[900px] mx-auto">
-            {activeTab === "howToUse" && <p className="text-base leading-[1.65] m-0 text-center">{product.howToUse}</p>}
-            {activeTab === "benefits" && <p className="text-base leading-[1.65] m-0 text-center">{product.benefits}</p>}
+            {activeTab === "howToUse" && <p className="text-base leading-[1.65] m-0 text-justify">{product.howToUse}</p>}
+            {activeTab === "benefits" && <p className="text-base leading-[1.65] m-0 text-justify">{product.benefits}</p>}
             {activeTab === "ingredients" && (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 [&>:nth-child(4):last-child]:lg:col-start-2">
                 {ingredients.map((item) => (
@@ -154,8 +158,8 @@ export function ProductDetail({ product, collection }) {
               </button>
               {openAccordion === tab.id && (
                 <div className="pb-5">
-                  {tab.id === "howToUse" && <p className="text-base leading-[1.65] m-0 text-center">{product.howToUse}</p>}
-                  {tab.id === "benefits" && <p className="text-base leading-[1.65] m-0 text-center">{product.benefits}</p>}
+                  {tab.id === "howToUse" && <p className="text-base leading-[1.65] m-0 text-justify">{product.howToUse}</p>}
+                  {tab.id === "benefits" && <p className="text-base leading-[1.65] m-0 text-justify">{product.benefits}</p>}
                   {tab.id === "ingredients" && (
                     <div className="grid grid-cols-1 gap-6">
                       {ingredients.map((item) => (

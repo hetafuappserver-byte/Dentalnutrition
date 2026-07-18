@@ -1,7 +1,7 @@
-import Navbar from "../../Common/Navbar/Navbar";
-import Footer from "../../Common/Footer/Footer";
-import VirtualBussinessClasses from "../../VirtualBussinessClasses/VirtualBussinessClasses";
-import { VIRTUAL_BUSINESS_COLLECTION } from "../../VirtualBussinessClasses/virtualBusinessProducts";
+import Navbar from "@/app/Common/Navbar/Navbar";
+import Footer from "@/app/Common/Footer/Footer";
+import VirtualBusinessClasses from "@/app/sections/virtual-business-classes/VirtualBusinessClasses";
+import { VIRTUAL_BUSINESS_COLLECTION } from "@/app/sections/virtual-business-classes/virtualBusinessProducts";
 
 export const metadata = {
   title: `${VIRTUAL_BUSINESS_COLLECTION.title} | Hetafu`,
@@ -12,7 +12,7 @@ export default function VirtualBusinessClassesPage() {
   return (
     <>
       <Navbar />
-      <VirtualBussinessClasses />
+      <VirtualBusinessClasses />
       <Footer />
     </>
   );

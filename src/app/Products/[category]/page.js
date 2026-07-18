@@ -1,18 +1,18 @@
 import { notFound, redirect } from "next/navigation";
-import Navbar from "../../Common/Navbar/Navbar";
-import Footer from "../../Common/Footer/Footer";
-import Bits from "../../Products/Bits/Bits";
-import Lollipops from "../../Products/Lollipops/Lollipops";
-import Mouthwash from "../../Products/Mouthwash/Mouthwash";
-import Smarts from "../../Products/Smarts/Smarts";
-import { SummitDetail } from "../../Summits/SummitDetail";
-import { SUMMITS, getSummitBySlug } from "../../Summits/summitsProducts";
-import { VirtualBusinessDetail } from "../../VirtualBussinessClasses/VirtualBusinessDetail";
+import Navbar from "@/app/Common/Navbar/Navbar";
+import Footer from "@/app/Common/Footer/Footer";
+import Bits from "@/app/Products/Bits/Bits";
+import Lollipops from "@/app/Products/Lollipops/Lollipops";
+import Mouthwash from "@/app/Products/Mouthwash/Mouthwash";
+import Smarts from "@/app/Products/Smarts/Smarts";
+import { SummitDetail } from "@/app/sections/summits/SummitDetail";
+import { SUMMITS, getSummitBySlug } from "@/app/sections/summits/summitsProducts";
+import { VirtualBusinessDetail } from "@/app/sections/virtual-business-classes/VirtualBusinessDetail";
 import {
   VIRTUAL_BUSINESS_CLASSES,
   getVirtualBusinessBySlug,
-} from "../../VirtualBussinessClasses/virtualBusinessProducts";
-import { COLLECTION_PAGES, getCategoryForSlug } from "../../Products/productRoutes";
+} from "@/app/sections/virtual-business-classes/virtualBusinessProducts";
+import { COLLECTION_PAGES, getCategoryForSlug } from "@/app/Products/productRoutes";
 
 const COLLECTION_COMPONENTS = {
   bits: Bits,

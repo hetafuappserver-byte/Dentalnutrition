@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import Navbar from "../Common/Navbar/Navbar";
-import Footer from "../Common/Footer/Footer";
+import Navbar from "@/app/Common/Navbar/Navbar";
+import Footer from "@/app/Common/Footer/Footer";
 import Link from "next/link";
 import { COLLECTION_PAGES } from "./productRoutes";
 

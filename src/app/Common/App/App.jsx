@@ -14,7 +14,7 @@ export default function App() {
             height={750}
           />
         </div>
-        <div className="text-center [&_h3]:m-0 [&_h3]:mb-4 [&_h3]:[font-family:var(--heading-font)] [&_h3]:text-[1.875rem] [&_h3]:tracking-[0.05em] [&_p]:m-0 [&_p]:mb-6 [&_p]:text-center [&_p]:text-lg">
+        <div className="text-center [&_h3]:m-0 [&_h3]:mb-4 [&_h3]:[font-family:var(--heading-font)] [&_h3]:text-[1.875rem] [&_h3]:tracking-[0.05em] [&_p]:m-0 [&_p]:mb-6 [&_p]:text-justify [&_p]:text-lg">
           <h3>
             <strong>Education anytime, anywhere</strong>
           </h3>

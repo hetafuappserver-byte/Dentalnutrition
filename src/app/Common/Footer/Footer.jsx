@@ -6,11 +6,11 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const FOOTER_LINKS = {
   professionals: [
-    { label: "Education", href: "/pages/education" },
-    { label: "Dental Nutrition", href: "/pages/dental-nutrition" },
+    { label: "Education", href: "/education" },
+    { label: "Dental Nutrition", href: "/dental-nutrition" },
     {
       label: "Color Formulation Tool",
-      href: "/pages/color-formulation-quiz",
+      href: "/color-formulation-quiz",
     },
     {
       label: "IDA Learning Platform",
@@ -19,20 +19,19 @@ const FOOTER_LINKS = {
     { label: "MO Pro Rewards Shop", href: "/collections/rewards-shop" },
   ],
   about: [
-    { label: "Meet the Team", href: "/pages/meet-the-team" },
-    { label: "Sustainability", href: "/pages/sustainability" },
-    { label: "Hetafu x IDA", href: "/pages/hetafu-vs-ida" },
-    { label: "Distribution", href: "/pages/distribution" },
+    { label: "Meet the Team", href: "/meet-the-team" },
+    { label: "Sustainability", href: "/sustainability" },
+    { label: "Hetafu x IDA", href: "/hetafu-vs-ida" },
+    { label: "Distribution", href: "/distribution" },
   ],
   support: [
-    { label: "FAQ", href: "/pages/frequently-asked-questions" },
-    { label: "Contact us", href: "/pages/contact" },
+    { label: "FAQ", href: "/frequently-asked-questions" },
+    { label: "Contact us", href: "/contact" },
   ],
 };
 
 const LEGAL_LINKS = [
-  { label: "Giveaway rules", href: "/pages/giveaway-rules" },
-  { label: "Safety Data Sheet", href: "/pages/safety-data-sheets" },
+  { label: "Refund & Cancellation policy", href: "/policies/refund-cancellation" },
   { label: "Privacy Policy", href: "/policies/privacy-policy" },
   { label: "Terms and conditions", href: "/policies/terms-of-service" },
 ];
@@ -130,32 +129,20 @@ function IconInstagram() {
   );
 }
 
-const FOOTER_HEADING =
-  "m-0 mb-4 [font-family:var(--heading-font)] text-[1.75rem] font-semibold tracking-[0.08em] uppercase";
-
-const FOOTER_LINK =
-  "text-[1rem] no-underline transition-opacity";
-
-const FOOTER_LEGAL_LINK =
-  "text-[var(--mo-teal)] no-underline transition-opacity";
-
-const FOOTER_SOCIAL_LINK =
-  "inline-flex items-center gap-[0.65rem] text-[0.9375rem] opacity-65 no-underline transition-opacity duration-200 hover:opacity-100";
+const FOOTER_HEADING = "m-0 [font-family:var(--heading-font)] text-lg sm:text-xl md:text-2xl font-semibold tracking-[0.05rem] uppercase mb-2";
+const FOOTER_LINK = "text-sm sm:text-base no-underline opacity-80 transition-opacity hover:opacity-100";
+const FOOTER_LEGAL_LINK = "text-[var(--mo-teal)] no-underline opacity-80 transition-opacity hover:opacity-100";
+const FOOTER_SOCIAL_LINK = "inline-flex items-center gap-2 sm:gap-3 text-xs sm:text-sm opacity-70 no-underline transition-opacity hover:opacity-100";
 
 function FooterLinkColumn({ title, links, children }) {
   return (
-    <div className="md:max-w-[90rem] md:flex-[0_2_20rem]">
+    <div className="flex-1 min-w-[150px] md:min-w-[180px]">
       <p className={FOOTER_HEADING}>{title}</p>
-      <ul className="m-0 flex list-none flex-col gap-[1.55rem] p-0">
+      <ul className="m-0 flex list-none flex-col  p-0">
         {links.map((link) => (
           <li key={link.label}>
             {link.href.startsWith("http") ? (
-              <a
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={FOOTER_LINK}
-              >
+              <a href={link.href} target="_blank" rel="noopener noreferrer" className={FOOTER_LINK}>
                 {link.label}
               </a>
             ) : (
@@ -224,12 +211,15 @@ function SpotlightCarousel() {
     });
   }, [activeIndex]);
 
-  const selectSlide = (index) => {
-    const video = SPOTLIGHT_VIDEOS[index];
-    if (video?.link) {
-      window.open(video.link, "_blank", "noopener noreferrer");
+  const handleVideoClick = (index) => {
+    if (index === activeIndex) {
+      const video = SPOTLIGHT_VIDEOS[index];
+      if (video?.link) {
+        window.open(video.link, "_blank", "noopener noreferrer");
+      }
+    } else {
+      setActiveIndex(index);
     }
-    setActiveIndex(index);
   };
 
   const goToPrev = () => {
@@ -243,64 +233,57 @@ function SpotlightCarousel() {
   };
 
   return (
-    <div ref={containerRef} className="mt-4 w-full" role="region" aria-label="Spotlight carousel">
+    <div ref={containerRef} className="w-full" role="region" aria-label="Spotlight carousel">
       <div className="relative w-full overflow-hidden">
-        <div className="relative flex items-center justify-center h-[500px] sm:h-[600px] md:h-[600px] lg:h-[650px] xl:h-[700px] 2xl:h-[750px]">
-          {/* Left Navigation Button */}
+        <div className="relative flex items-center justify-center h-[350px] sm:h-[400px] md:h-[450px] lg:h-[500px] xl:h-[550px]">
+          {/* Mobile Navigation Buttons */}
           <button
             onClick={goToPrev}
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
             aria-label="Previous video"
-            className="absolute left-2 sm:left-4 lg:left-8 xl:left-10 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-teal-700 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 shadow-2xl hover:bg-teal-800 transition-all duration-300 group/nav active:scale-95"
+            className="sm:hidden absolute left-2 top-1/2 -translate-y-1/2 z-40 w-9 h-9 bg-teal-700 rounded-full flex items-center justify-center border border-white/20 shadow-lg hover:bg-teal-800 active:scale-95 transition-all"
           >
-            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white group-hover/nav:-translate-x-0.5 transition-transform" />
+            <ChevronLeft className="w-4 h-4 text-white" />
           </button>
-
-          {/* Right Navigation Button */}
           <button
             onClick={goToNext}
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
             aria-label="Next video"
-            className="absolute right-2 sm:right-4 lg:right-8 xl:right-10 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-teal-700 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 shadow-2xl hover:bg-teal-800 transition-all duration-300 group/nav active:scale-95"
+            className="sm:hidden absolute right-2 top-1/2 -translate-y-1/2 z-40 w-9 h-9 bg-teal-700 rounded-full flex items-center justify-center border border-white/20 shadow-lg hover:bg-teal-800 active:scale-95 transition-all"
           >
-            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white group-hover/nav:translate-x-0.5 transition-transform" />
+            <ChevronRight className="w-4 h-4 text-white" />
           </button>
 
           {/* Mobile Carousel */}
-          <div className="flex sm:hidden w-full h-full relative items-center justify-center overflow-hidden">
-            {carouselItems.filter(item => Math.abs(item.offset) <= 4).map((item) => ( // Show all 9 items on mobile
+          <div className="flex sm:hidden w-full h-full relative items-center justify-center overflow-hidden px-2">
+            {carouselItems.map((item) => (
               <div
                 key={item.id}
-                className="absolute w-full max-w-[320px] aspect-[9/16] transition-all duration-500 ease-in-out px-4"
+                className="absolute w-full max-w-[240px] aspect-[9/16] transition-all duration-500 rounded-3xl overflow-hidden shadow-lg"
                 style={{
-                  transform: `translateX(${item.offset * 100}%) scale(${item.offset === 0 ? 1 : 0.85})`,
+                  transform: `translateX(${item.offset * 100}%) scale(${item.offset === 0 ? 1 : 0.8})`,
                   opacity: item.offset === 0 ? 1 : 0,
                   zIndex: item.offset === 0 ? 20 : 10,
                 }}
+                onClick={() => handleVideoClick(item.originalIndex)}
+                role="button"
+                tabIndex={item.offset === 0 ? 0 : -1}
+                aria-label="Watch testimonial video"
               >
-                <div 
-                  className="w-full h-full rounded-2xl overflow-hidden group relative shadow-2xl cursor-pointer"
-                  onClick={() => selectSlide(item.originalIndex)}
-                >
-                  <a href={item.link} target="_blank" rel="noopener noreferrer" aria-label="Watch dentist testimonial on YouTube">
-                    <div className="relative w-full h-full">
-                      {isVisible && item.offset === 0 && (
-                        <video
-                          ref={videoRef}
-                          src={item.src}
-                          className="w-full h-full object-cover"
-                          loop
-                          muted
-                          playsInline
-                          preload="auto"
-                          autoPlay
-                        />
-                      )}
-                    </div>
-                  </a>
-                </div>
+                {isVisible && item.offset === 0 && (
+                  <video
+                    ref={videoRef}
+                    src={item.src}
+                    className="w-full h-full object-cover"
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
+                    autoPlay
+                  />
+                )}
               </div>
             ))}
           </div>
@@ -315,60 +298,44 @@ function SpotlightCarousel() {
               {carouselItems.map((item) => {
                 const distance = Math.abs(item.offset);
                 const isCenter = item.offset === 0;
+                if (distance > 4) return null;
 
-                // Only render items that are within visible or slightly beyond for transition
-                if (distance > 4) return null; // Show all 9 items instead of only 7
-
-                const translateX = item.offset * 300;
-                const scale = isCenter ? 1.1 : 1 - (distance * 0.05);
-                // Increased opacity for better visibility: center 1, neighbors 0.9, edge 0.7, still visible
-                const opacity = distance === 0 ? 1 : distance === 1 ? 0.9 : distance === 2 ? 0.7 : 0.5;
+                const translateX = item.offset * 295;
+                const scale = isCenter ? 1.08 : 1 - (distance * 0.06);
+                const opacity = distance === 0 ? 1 : distance === 1 ? 0.85 : distance === 2 ? 0.65 : 0.4;
                 const zIndex = 10 - distance;
-                const shadow = isCenter ? 'shadow-2xl' : distance === 1 ? 'shadow-lg' : 'shadow-md';
 
                 return (
                   <div
                     key={item.id}
-                    className={`absolute transition-all duration-700 ease-in-out ${shadow}`}
+                    className="absolute transition-all duration-700 ease-in-out"
                     style={{
                       transform: `translateX(${translateX}px) scale(${scale})`,
-                      opacity: opacity,
-                      zIndex: zIndex,
+                      opacity,
+                      zIndex,
                       willChange: 'transform, opacity',
                       pointerEvents: distance > 2 ? 'none' : 'auto'
                     }}
                   >
-                    <a 
-                      href={item.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      aria-label="Watch dentist testimonial on YouTube"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        selectSlide(item.originalIndex);
-                      }}
+                    <div
+                      className="w-56 h-80 sm:w-60 sm:h-96 md:w-64 md:h-[25rem] lg:w-72 lg:h-[28rem] xl:w-80 xl:h-[32rem] rounded-3xl overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300 shadow-lg mx-2"
+                      onClick={() => handleVideoClick(item.originalIndex)}
+                      role="button"
+                      tabIndex={0}
+                      aria-label="Watch testimonial video"
                     >
-                      <div className="w-80 h-[32rem] lg:w-96 lg:h-[36rem] xl:w-[24rem] xl:h-[36rem] 2xl:w-[26rem] 2xl:h-[40rem] rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer">
-                        <div className="relative w-full h-full">
-                          {isVisible && (
-                            <video
-                              ref={isCenter ? videoRef : null}
-                              src={item.src}
-                              className="w-full h-full object-cover"
-                              autoPlay
-                              loop
-                              muted
-                              playsInline
-                              preload="auto"
-                            />
-                          )}
-                          <div className={`absolute inset-0 transition-all duration-300 ${isCenter
-                            ? 'bg-black/0'
-                            : 'bg-black/10'
-                            }`}></div>
-                        </div>
-                      </div>
-                    </a>
+                    <video
+                      ref={isCenter ? videoRef : null}
+                      src={item.src}
+                      className="w-full h-full object-cover rounded-3xl"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      preload="auto"
+                    />
+                      {!isCenter && <div className="absolute inset-0 bg-black/5"></div>}
+                    </div>
                   </div>
                 );
               })}
@@ -382,55 +349,51 @@ function SpotlightCarousel() {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#c9f5f5] text-[var(--mo-brown)]">
-      <div className="mx-auto grid max-w-[1600px] gap-10 px-5 pt-10 pb-0 md:gap-12 md:px-8 md:pt-12 lg:px-12">
-        <div className="text-center">
-          <p className={`${FOOTER_HEADING} mb-2`}>Find your community</p>
-          <p className="m-0 text-2xl leading-tight">
+    <footer className="bg-[#fdf8f4] text-[var(--mo-brown)]">
+      <div className="mx-auto max-w-8xl px-4 py-8 sm:px-6 md:py-12 lg:px-8">
+        {/* Community Section */}
+        {/* <div className="mb-8 text-center md:mb-12">
+          <p className={FOOTER_HEADING}>Find your community</p>
+          <p className="m-0 mt-2 text-lg sm:text-xl md:text-2xl leading-tight">
             <a
               href="https://www.instagram.com/hetafu_/"
               target="_blank"
               rel="noopener noreferrer"
-              className="no-underline transition-opacity duration-200 hover:!opacity-75"
+              className="no-underline opacity-90 transition-opacity hover:opacity-100"
             >
               @IDA Academy
             </a>
           </p>
+        </div> */}
+
+        <div className="mb-12 md:mb-16 w-full">
+          <SpotlightCarousel />
         </div>
 
-        <div className="grid items-start gap-10 md:flex md:flex-wrap md:justify-between md:gap-12 min-[1150px]:gap-x-32">
-          <div className="md:mx-auto md:w-full md:max-w-full md:flex-[0_0_100%]">
-            <SpotlightCarousel />
-          </div>
-
-          <div className="md:max-w-96 md:flex-[1_1_16rem]">
+        {/* Main Content Grid */}
+        <div className="mb-12 grid gap-12 sm:grid-cols-2 lg:grid-cols-5 lg:gap-20 [&>div]:flex [&>div]:flex-col w-full">
+          {/* Newsletter */}
+          <div className="min-w-0">
             <p className={FOOTER_HEADING}>Stay in the know</p>
-            <p className="m-0 mb-5 text-[0.9375rem] leading-relaxed">
-              Stay in the loop about exclusive offers and the latest product
-              information with our newsletter.
+            <p className="m-0 mb-4 text-sm sm:text-base leading-relaxed">
+              Stay in the loop about exclusive offers and the latest product information.
             </p>
-            <form
-              className="flex max-w-full items-stretch"
-              action="/contact#newsletter-form"
-              method="post"
-            >
+            <form className="flex" action="/contact#newsletter-form" method="post">
               <input type="hidden" name="form_type" value="customer" />
               <input type="hidden" name="utf8" value="✓" />
               <input type="hidden" name="contact[tags]" value="newsletter" />
-              <div className="relative flex-1">
-                <input
-                  id="footer-email"
-                  type="email"
-                  name="contact[email]"
-                  placeholder="E-mail"
-                  autoComplete="email"
-                  required
-                  className="h-10 w-full border border-[var(--mo-teal)] border-r-0 bg-white px-3 [font-family:var(--body-font)] text-[0.9375rem] text-[var(--mo-brown)] placeholder:text-[rgba(64,30,23,0.65)]"
-                />
-              </div>
+              <input
+                id="footer-email"
+                type="email"
+                name="contact[email]"
+                placeholder="E-mail"
+                autoComplete="email"
+                required
+                className="flex-1 border border-[var(--mo-teal)] border-r-0 bg-white px-3 py-2 text-sm text-[var(--mo-brown)] placeholder:text-[rgba(64,30,23,0.6)]"
+              />
               <button
                 type="submit"
-                className="inline-flex h-10 w-10 min-w-10 cursor-pointer items-center justify-center border border-[var(--mo-teal)] bg-[var(--mo-teal)] text-white transition-colors duration-200 hover:!bg-[#02aba9]"
+                className="w-10 border border-[var(--mo-teal)] bg-[var(--mo-teal)] text-white hover:bg-[#02aba9] transition-colors"
                 aria-label="Subscribe"
               >
                 <IconArrowSubmit />
@@ -438,32 +401,61 @@ export default function Footer() {
             </form>
           </div>
 
-          <FooterLinkColumn title="About Us" links={FOOTER_LINKS.about}>
-            <div className="mt-4" />
-          </FooterLinkColumn>
+          {/* About Us */}
+          <FooterLinkColumn title="About Us" links={FOOTER_LINKS.about} />
 
-          <FooterLinkColumn title="Support" links={FOOTER_LINKS.support}>
-            <div className="mt-4">
-              <p className={FOOTER_HEADING}>NYC Academy</p>
-              <div className="mt-3 flex items-start gap-3 text-[0.9375rem] leading-normal">
-                <IconLocation />
-                <div>
-                  Plot No. 14D/1, 3rd Floor, Dwaraka Signature Building,
-                  <br />
-                  Jaihind Gandhi Road, Madhapur,
-                  <br />
-                  Hyderabad, Telangana-500081
-                </div>
+          {/* Support */}
+          <div className="flex flex-col min-w-0">
+            <p className={FOOTER_HEADING}>Support</p>
+            <ul className="m-0 flex list-none flex-col p-0">
+              {FOOTER_LINKS.support.map((link) => (
+                <li key={link.label}>
+                  {link.href.startsWith("http") ? (
+                    <a href={link.href} target="_blank" rel="noopener noreferrer" className={FOOTER_LINK}>
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link href={link.href} className={FOOTER_LINK}>
+                      {link.label}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Academy */}
+          <div className="flex flex-col min-w-0">
+            <p className={FOOTER_HEADING}>IDA Academy</p>
+            <div className="text-xs sm:text-sm">
+              <div>
+                <ul className="m-0 flex list-none flex-col p-0">
+                  <li><a href="#" className={FOOTER_LINK}>Dental Nutrition Basics</a></li>
+                  <li><a href="#" className={FOOTER_LINK}>Advanced Courses</a></li>
+                  <li><a href="#" className={FOOTER_LINK}>Certification Programs</a></li>
+                  <li><a href="#" className={FOOTER_LINK}>Webinars</a></li>
+                </ul>
               </div>
             </div>
-          </FooterLinkColumn>
+          </div>
+
+          {/* Address */}
+          <div className="flex flex-col min-w-0">
+            <p className={FOOTER_HEADING}>Address</p>
+            <div className="mt-3 flex gap-2 sm:gap-3 text-xs sm:text-sm leading-relaxed">
+              <IconLocation className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 mt-0.5" />
+              <div>
+                Plot No. 14D/1, 3rd Floor, Dwaraka Signature Building,<br />
+                Jaihind Gandhi Road, Madhapur,<br />
+                Hyderabad, Telangana-500081
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="mb-10 flex w-full justify-start">
-          <ul
-            className="m-0 flex list-none flex-wrap items-center gap-3 gap-x-8 p-0"
-            role="list"
-          >
+        {/* Social Links */}
+        {/* <div className="mb-8 border-t border-[var(--mo-brown)]/10 pt-8">
+          <ul className="m-0 flex list-none flex-wrap gap-4 sm:gap-6 p-0">
             <li>
               <a
                 className={FOOTER_SOCIAL_LINK}
@@ -472,33 +464,38 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label="Follow on Instagram"
               >
-                <span className="h-4 w-4 [&_svg]:h-4 [&_svg]:w-4">
+                <span className="h-4 w-4 flex-shrink-0">
                   <IconInstagram />
                 </span>
-                Follow us on instagram!
+                <span>Follow us on Instagram</span>
               </a>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
 
-      <div className="flex flex-col items-center justify-evenly gap-4 bg-white px-5 py-4 pb-8 text-center text-xs tracking-[0.05em] text-[var(--mo-brown)] md:flex-row md:justify-between md:p-12">
-        <p className="m-0 whitespace-nowrap">© 2026 - Dental Nutrition. All Rights Reserved.</p>
-        <ul className="m-0 grid list-none grid-cols-2 gap-y-2 p-0 whitespace-nowrap md:flex md:flex-wrap md:justify-end md:gap-0">
-          {LEGAL_LINKS.map((link) => (
-            <li key={link.label} className="px-[2px] text-xs uppercase md:px-4">
-              {link.href.startsWith("http") ? (
-                <a href={link.href} className={FOOTER_LEGAL_LINK}>
-                  {link.label}
-                </a>
-              ) : (
-                <Link href={link.href} className={FOOTER_LEGAL_LINK}>
-                  {link.label}
-                </Link>
-              )}
-            </li>
-          ))}
-        </ul>
+      {/* Legal Footer */}
+      <div className="border-t border-[var(--mo-brown)]/10 bg-white">
+        <div className="mx-auto max-w-8xl px-4 py-6 sm:px-6 md:py-8 lg:px-8">
+          <div className="flex flex-col gap-4 text-center text-xs sm:text-sm md:flex-row md:items-center md:justify-between md:gap-6">
+            <p className="m-0">© {new Date().getFullYear()} - Hetafu India Private Limited. All Rights Reserved.</p>
+            <ul className="m-0 flex list-none flex-wrap justify-center gap-2 sm:gap-4 p-0 md:justify-end">
+              {LEGAL_LINKS.map((link) => (
+                <li key={link.label}>
+                  {link.href.startsWith("http") ? (
+                    <a href={link.href} className={FOOTER_LEGAL_LINK}>
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link href={link.href} className={FOOTER_LEGAL_LINK}>
+                      {link.label}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </footer>
   );

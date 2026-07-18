@@ -1,7 +1,7 @@
-import Navbar from "../../Common/Navbar/Navbar";
-import Footer from "../../Common/Footer/Footer";
-import Summits from "../../Summits/Summits";
-import { SUMMITS_COLLECTION } from "../../Summits/summitsProducts";
+import Navbar from "@/app/Common/Navbar/Navbar";
+import Footer from "@/app/Common/Footer/Footer";
+import Summits from "@/app/sections/summits/Summits";
+import { SUMMITS_COLLECTION } from "@/app/sections/summits/summitsProducts";
 
 export const metadata = {
   title: `${SUMMITS_COLLECTION.title} | Hetafu`,
