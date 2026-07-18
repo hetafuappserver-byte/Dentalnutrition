@@ -4,7 +4,7 @@ const CDN = "https://moroccanoilprofessionals.com/cdn/shop/files";
 
 export const MOUTHWASH_COLLECTION = {
   title: "MOUTHWASH",
-  href: "/Products/mouthwash",
+  href: "/products/mouthwash",
 };
 
 export const MOUTHWASH_PRODUCTS = [

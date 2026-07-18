@@ -45,10 +45,10 @@ const NAV_ITEMS = [
       {
         title: "Category",
         links: [
-          { label: "Bits", href: "/Products/bits" },
-          { label: "Lollipops", href: "/Products/lollipops" },
-          { label: "Mouthwashes", href: "/Products/mouthwash" },
-          { label: "Smarts", href: "/Products/smarts" },
+          { label: "Bits", href: "/products/bits" },
+          { label: "Lollipops", href: "/products/lollipops" },
+          { label: "Mouthwashes", href: "/products/mouthwash" },
+          { label: "Smarts", href: "/products/smarts" },
         ],
       },
     ],
@@ -215,7 +215,7 @@ export default function Navbar() {
     <header className="relative sticky top-0 z-50 border-b border-[rgba(64,30,23,0.15)] bg-white">
       <div className="flex items-center gap-3 px-4 py-2 md:px-5 md:py-[0.65rem] min-[1000px]:gap-[5.5rem]">
         <h1 className="m-0 order-2 flex flex-1 justify-center min-[1000px]:order-1 min-[1000px]:flex-none min-[1000px]:justify-start">
-          <Link href="/" className="inline-flex shrink-0">
+          <Link href="https://test.hetafu.com" className="inline-flex shrink-0">
             <span className="sr-only">Hetafu</span>
             <Image
               src={LOGO}

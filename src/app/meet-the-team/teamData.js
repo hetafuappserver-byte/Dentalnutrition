@@ -9,7 +9,6 @@ export const TEAM_PAGE = {
           "modalId": "image_with_text_FEwPKe",
           "image": "/Team/Team1.webp",
           "name": "Laxmi Narayana",
-          "role": "Director",
           "id": "image_with_text_FEwPKe",
           "instagram": "",
           "instagramHandle": "",
@@ -19,13 +18,12 @@ export const TEAM_PAGE = {
             "He has successfully launched category-defining products that shaped market trends and drove significant growth.",
             "Known for his innovation and cross-functional leadership, his expertise continues to meet the evolving demands of consumers in competitive industries."
           ],
-          "gridRole": "Director"
+    
         },
         {
           "modalId": "image_with_text_gCgAjU",
           "image": "/Team/Team2.webp",
           "name": "Sowjanya L",
-          "role": "Director",
           "id": "image_with_text_gCgAjU",
           "instagram": "",
           "instagramHandle": "",
@@ -37,7 +35,6 @@ export const TEAM_PAGE = {
             "She is a published researcher with her Lean Six Sigma Yellow Belt & MOCA certifications.",
             "Her expertise spans ingredient synergy, GRAS sourcing, and ISO/GMP-compliant manufacturing."
           ],
-          "gridRole": "Director"
         },
       ]
     },

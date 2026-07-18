@@ -21,7 +21,7 @@ export default async function ProductsPage() {
           {Object.entries(COLLECTION_PAGES).map(([slug, collection]) => (
             <Link 
               key={slug} 
-              href={`/Products/${slug}`}
+              href={`/products/${slug}`}
               className="block p-6 border rounded-lg hover:shadow-lg transition-shadow"
             >
               <h2 className="text-2xl font-semibold mb-2">{collection.metadata.title.split(" | ")[0]}</h2>

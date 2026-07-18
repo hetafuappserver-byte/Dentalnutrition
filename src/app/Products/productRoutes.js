@@ -42,7 +42,7 @@ export const COLLECTION_PAGES = {
 };
 
 export function getProductHref(category, slug) {
-  return `/Products/${category}/${slug}`;
+  return `/products/${category}/${slug}`;
 }
 
 export function getProductHrefForSlug(slug) {

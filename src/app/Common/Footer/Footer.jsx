@@ -318,7 +318,7 @@ function SpotlightCarousel() {
                     }}
                   >
                     <div
-                      className="w-56 h-80 sm:w-60 sm:h-96 md:w-64 md:h-[25rem] lg:w-72 lg:h-[28rem] xl:w-80 xl:h-[32rem] rounded-3xl overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300 shadow-lg mx-2"
+                      className="w-56 h-80 sm:w-60 sm:h-96 md:w-64 md:h-[25rem] lg:w-72 lg:h-[28rem] xl:w-80 xl:h-[32rem] rounded-3xl overflow-hidden cursor-pointer shadow-lg mx-2"
                       onClick={() => handleVideoClick(item.originalIndex)}
                       role="button"
                       tabIndex={0}
@@ -430,10 +430,10 @@ export default function Footer() {
             <div className="text-xs sm:text-sm">
               <div>
                 <ul className="m-0 flex list-none flex-col p-0">
-                  <li><a href="#" className={FOOTER_LINK}>Dental Nutrition Basics</a></li>
-                  <li><a href="#" className={FOOTER_LINK}>Advanced Courses</a></li>
-                  <li><a href="#" className={FOOTER_LINK}>Certification Programs</a></li>
-                  <li><a href="#" className={FOOTER_LINK}>Webinars</a></li>
+                  <li><a href="/" className={FOOTER_LINK}>Dental Nutrition Basics</a></li>
+                  <li><a href="/" className={FOOTER_LINK}>Advanced Courses</a></li>
+                  <li><a href="/" className={FOOTER_LINK}>Certification Programs</a></li>
+                  <li><a href="/" className={FOOTER_LINK}>Webinars</a></li>
                 </ul>
               </div>
             </div>

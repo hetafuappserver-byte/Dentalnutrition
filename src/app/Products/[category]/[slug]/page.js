@@ -1,16 +1,16 @@
 import { notFound } from "next/navigation";
 import Navbar from "@/app/Common/Navbar/Navbar";
 import Footer from "@/app/Common/Footer/Footer";
-import { ProductDetail } from "@/app/Products/ProductDetail";
-import { getAllBitsProductSlugs } from "@/app/Products/Bits/bitsProducts";
-import { getAllLollipopsProductSlugs } from "@/app/Products/Lollipops/lollipopsProducts";
-import { getAllMouthwashProductSlugs } from "@/app/Products/Mouthwash/mouthwashProducts";
-import { getAllSmartsProductSlugs } from "@/app/Products/Smarts/smartsProducts";
+import { ProductDetail } from "@/app/products/ProductDetail";
+import { getAllBitsProductSlugs } from "@/app/products/Bits/bitsProducts";
+import { getAllLollipopsProductSlugs } from "@/app/products/Lollipops/lollipopsProducts";
+import { getAllMouthwashProductSlugs } from "@/app/products/Mouthwash/mouthwashProducts";
+import { getAllSmartsProductSlugs } from "@/app/products/Smarts/smartsProducts";
 import {
   COLLECTION_BY_CATEGORY,
   COLLECTION_PAGES,
   getProductForCategory,
-} from "@/app/Products/productRoutes";
+} from "@/app/products/productRoutes";
 
 export async function generateStaticParams() {
   return [

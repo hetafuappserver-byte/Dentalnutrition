@@ -1,10 +1,10 @@
 import { notFound, redirect } from "next/navigation";
 import Navbar from "@/app/Common/Navbar/Navbar";
 import Footer from "@/app/Common/Footer/Footer";
-import Bits from "@/app/Products/Bits/Bits";
-import Lollipops from "@/app/Products/Lollipops/Lollipops";
-import Mouthwash from "@/app/Products/Mouthwash/Mouthwash";
-import Smarts from "@/app/Products/Smarts/Smarts";
+import Bits from "@/app/products/Bits/Bits";
+import Lollipops from "@/app/products/Lollipops/Lollipops";
+import Mouthwash from "@/app/products/Mouthwash/Mouthwash";
+import Smarts from "@/app/products/Smarts/Smarts";
 import { SummitDetail } from "@/app/sections/summits/SummitDetail";
 import { SUMMITS, getSummitBySlug } from "@/app/sections/summits/summitsProducts";
 import { VirtualBusinessDetail } from "@/app/sections/virtual-business-classes/VirtualBusinessDetail";
@@ -12,7 +12,7 @@ import {
   VIRTUAL_BUSINESS_CLASSES,
   getVirtualBusinessBySlug,
 } from "@/app/sections/virtual-business-classes/virtualBusinessProducts";
-import { COLLECTION_PAGES, getCategoryForSlug } from "@/app/Products/productRoutes";
+import { COLLECTION_PAGES, getCategoryForSlug } from "@/app/products/productRoutes";
 
 const COLLECTION_COMPONENTS = {
   bits: Bits,
@@ -99,7 +99,7 @@ export default async function CategoryPage({ params }) {
   const legacyCategory = getCategoryForSlug(category);
 
   if (legacyCategory) {
-    redirect(`/Products/${legacyCategory}/${category}`);
+    redirect(`/products/${legacyCategory}/${category}`);
   }
 
   notFound();

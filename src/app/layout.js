@@ -4,6 +4,9 @@ export const metadata = {
     "What is Dental Nutrition? | Hetafu",
   description:
     "Dental nutrition is oral care in edible form. Learn how Hetafu's formulas provide day-long protection for your oral health.",
+  icons: {
+    icon: "/Logos/LogoBlack.svg",
+  },
 };
 
 export default function RootLayout({ children }) {

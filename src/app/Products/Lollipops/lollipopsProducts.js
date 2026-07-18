@@ -4,7 +4,7 @@ const CDN = "https://moroccanoilprofessionals.com/cdn/shop/files";
 
 export const LOLLIPOPS_COLLECTION = {
   title: "Lollipops",
-  href: "/Products/lollipops",
+  href: "/products/lollipops",
 };
 
 export const LOLLIPOPS_PRODUCTS = [

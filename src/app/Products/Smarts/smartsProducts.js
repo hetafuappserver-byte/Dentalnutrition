@@ -4,7 +4,7 @@ const CDN = "https://moroccanoilprofessionals.com/cdn/shop/files";
 
 export const SMARTS_COLLECTION = {
   title: "Denta Smarts",
-  href: "/Products/smarts",
+  href: "/products/smarts",
 };
 
 export const SMARTS_PRODUCTS = [

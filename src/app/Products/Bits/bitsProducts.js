@@ -18,7 +18,7 @@ export const DEFAULT_KEY_INGREDIENTS = [
 
 export const BITS_COLLECTION = {
   title: "Dental Wellness Bits",
-  href: "/Products/bits",
+  href: "/products/bits",
 };
 
 export const BITS_PRODUCTS = [
