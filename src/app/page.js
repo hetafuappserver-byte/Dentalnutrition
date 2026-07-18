@@ -115,13 +115,13 @@ function IconChevronRight() {
 
 function ProductGrid({ products }) {
   return (
-    <div className="mx-auto mt-8 flex max-w-[1200px] gap-5 md:gap-6 overflow-x-auto pb-2 md:grid md:grid-cols-4">
+    <div className="mx-auto mt-6 grid grid-cols-4 gap-3 max-w-[500px] px-4">
       {products.map((product) => (
-        <a key={product.title} href={product.href} className="text-center flex-shrink-0 w-[calc(100%/4)] md:w-auto">
-          <div className="mb-4 aspect-square overflow-hidden rounded-full bg-[#f3f3f3] [&_img]:!h-full [&_img]:!w-full [&_img]:object-cover">
-            <Image src={product.image} alt={product.title} width={500} height={500} />
+        <a key={product.title} href={product.href} className="text-center">
+          <div className="mb-1 aspect-square overflow-hidden rounded-full bg-[#f3f3f3] [&_img]:!h-full [&_img]:!w-full [&_img]:object-cover">
+            <Image src={product.image} alt={product.title} width={120} height={120} className="max-w-full mx-auto" />
           </div>
-          <p className="text-base capitalize tracking-[0.02em]">{product.title}</p>
+          <p className="text-[10px] capitalize tracking-[0.02em]">{product.title}</p>
         </a>
       ))}
     </div>
@@ -206,13 +206,13 @@ export default function Page() {
                   }`}
                 >
                   <div className="w-full max-w-[min(100%,16rem)] sm:max-w-[min(100%,32rem)] md:max-w-[min(50%,36rem)]">
-                    <p className="m-0 mb-1 sm:mb-3 [font-family:var(--heading-font)] text-[8px] sm:text-sm font-semibold tracking-[0.12em] uppercase text-[var(--mo-teal)]">
+                    <p className="m-0 mb-1 sm:mb-3 [font-family:var(--heading-font)] text-[10px] sm:text-sm font-semibold tracking-[0.12em] uppercase text-[var(--mo-teal)]">
                       {slide.eyebrow}
                     </p>
-                    <h2 className="m-0 mb-1 sm:mb-3 md:mb-4 [font-family:var(--heading-font)] text-[clamp(0.75rem,2vw,3rem)] font-normal leading-[1.1] sm:leading-[1.15] tracking-[0.03em] text-[var(--mo-brown)]">
+                    <h2 className="m-0 mb-1 sm:mb-3 md:mb-4 [font-family:var(--heading-font)] text-[clamp(1rem,3.5vw,3rem)] font-normal leading-[1.1] sm:leading-[1.15] tracking-[0.03em] text-[var(--mo-brown)]">
                       {slide.title}
                     </h2>
-                    <p className="m-0 text-[clamp(0.55rem,1vw,1rem)] leading-[1.3] sm:leading-relaxed text-justify text-[rgba(64,30,23,0.85)]">
+                    <p className="m-0 text-[clamp(0.7rem,1.5vw,1rem)] leading-[1.3] sm:leading-relaxed text-justify text-[rgba(64,30,23,0.85)]">
                       {slide.subtitle}
                     </p>
                   </div>
@@ -237,7 +237,7 @@ export default function Page() {
         </section>
 
         <section className="px-5 py-10 text-center md:px-8 md:py-16">
-          <p className="[font-family:var(--heading-font)] text-[clamp(1.25rem,4vw,2rem)] font-normal tracking-[0.1em] uppercase whitespace-nowrap">
+          <p className="[font-family:var(--heading-font)] text-[clamp(1rem,4vw,2rem)] font-normal tracking-[0.05em] sm:tracking-[0.1em] uppercase max-w-[600px] mx-auto">
             DISCOVER OUR PRODUCTS
           </p>
           <ProductGrid products={HETAFU_PRODUCTS.slice(0, 8)} />

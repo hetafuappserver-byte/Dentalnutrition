@@ -82,8 +82,41 @@ export function ProductDetail({ product, collection }) {
           </div>
         </div>
 
-        <div className="relative z-[1] lg:absolute lg:left-50 lg:top-[43%] px-5 lg:px-8">
-          <div className="mx-auto w-full max-w-none lg:max-w-[450px]">
+        {/* Mobile/Tablet: stacked layout */}
+        <div className="lg:hidden px-5 pt-4">
+          <div className="mx-auto w-full max-w-[360px] sm:max-w-[420px]">
+            <div className="aspect-square rounded-lg bg-[#f3f3f3] overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover flex items-center justify-center border-4 border-[#fcfcfc] shadow-lg">
+              <Image src={gallery[activeImage]} alt={product.title} width={900} height={900} priority />
+            </div>
+            {gallery.length > 1 && (
+              <div className="flex flex-wrap justify-center gap-3 mt-4">
+                {gallery.map((image, index) => (
+                  <button
+                    key={image}
+                    type="button"
+                    className={`w-14 h-14 sm:w-[72px] sm:h-[72px] p-0 border cursor-pointer overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-contain`}
+                    aria-label={`View image ${index + 1}`}
+                    aria-current={activeImage === index}
+                    onClick={() => setActiveImage(index)}
+                  >
+                    <Image src={image.replace("&width=1200", "&width=200")} alt="" width={112} height={112} />
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="mt-6 text-center">
+            <h1 className="font-['Ivy_Mode_Regular',sans-serif] text-[28px] sm:text-[32px] font-normal tracking-[0.02rem] m-0 mb-2">
+              {product.title}
+            </h1>
+            {product.tagline && <p className="text-sm sm:text-base m-0 mb-4 text-[#0891b2] font-medium">{product.tagline}</p>}
+            <p className="text-sm sm:text-base leading-[1.65] m-0 text-gray-700 text-justify">{product.description}</p>
+          </div>
+        </div>
+
+        {/* Desktop: absolute overlay layout */}
+        <div className="hidden lg:block relative z-[1] lg:absolute lg:left-[4%] xl:left-[6%] lg:top-[43%] px-5 lg:px-8">
+          <div className="mx-auto w-full max-w-none lg:max-w-[380px] xl:max-w-[450px]">
             <div className="lg:aspect-square lg:rounded-full aspect-square rounded-lg bg-[#f3f3f3] overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover flex items-center justify-center lg:border-8 border-4 border-[#fcfcfc] shadow-lg">
               <Image src={gallery[activeImage]} alt={product.title} width={900} height={900} priority />
             </div>
@@ -105,8 +138,8 @@ export function ProductDetail({ product, collection }) {
             )}
           </div>
         </div>
-        <div className="max-w-[1200px] mx-auto pt-8 lg:pt-10">
-          <div className="max-lg:text-center max-lg:mx-auto lg:text-left lg:ml-[550px]">
+        <div className="hidden lg:block max-w-[1200px] mx-auto pt-8 lg:pt-10">
+          <div className="lg:text-left lg:ml-[420px] xl:ml-[500px]">
             <h1 className="font-['Ivy_Mode_Regular',sans-serif] text-[32px] font-normal tracking-[0.02rem] m-0 mb-2 text-justify">
               {product.title}
             </h1>

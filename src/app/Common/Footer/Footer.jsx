@@ -300,7 +300,8 @@ function SpotlightCarousel() {
                 const isCenter = item.offset === 0;
                 if (distance > 4) return null;
 
-                const translateX = item.offset * 295;
+                // Use smaller step on sm/md, larger on lg+
+                // We'll use a CSS custom property set via inline style
                 const scale = isCenter ? 1.08 : 1 - (distance * 0.06);
                 const opacity = distance === 0 ? 1 : distance === 1 ? 0.85 : distance === 2 ? 0.65 : 0.4;
                 const zIndex = 10 - distance;
@@ -310,7 +311,7 @@ function SpotlightCarousel() {
                     key={item.id}
                     className="absolute transition-all duration-700 ease-in-out"
                     style={{
-                      transform: `translateX(${translateX}px) scale(${scale})`,
+                      transform: `translateX(calc(${item.offset} * var(--carousel-step, 220px))) scale(${scale})`,
                       opacity,
                       zIndex,
                       willChange: 'transform, opacity',
@@ -318,7 +319,7 @@ function SpotlightCarousel() {
                     }}
                   >
                     <div
-                      className="w-56 h-80 sm:w-60 sm:h-96 md:w-64 md:h-[25rem] lg:w-72 lg:h-[28rem] xl:w-80 xl:h-[32rem] rounded-3xl overflow-hidden cursor-pointer shadow-lg mx-2"
+                      className="w-44 h-72 sm:w-52 sm:h-80 md:w-56 md:h-[22rem] lg:w-64 lg:h-[26rem] xl:w-72 xl:h-[30rem] rounded-3xl overflow-hidden cursor-pointer shadow-lg mx-1"
                       onClick={() => handleVideoClick(item.originalIndex)}
                       role="button"
                       tabIndex={0}

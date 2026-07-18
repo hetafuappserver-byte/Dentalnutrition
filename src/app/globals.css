@@ -11,6 +11,19 @@
   --heading-font: "Instrument Sans", sans-serif;
   --body-font: Nunito, sans-serif;
   --header-height: 75px;
+  --carousel-step: 190px;
+}
+
+@media (min-width: 768px) {
+  :root { --carousel-step: 230px; }
+}
+
+@media (min-width: 1024px) {
+  :root { --carousel-step: 275px; }
+}
+
+@media (min-width: 1280px) {
+  :root { --carousel-step: 305px; }
 }
 
 *,
