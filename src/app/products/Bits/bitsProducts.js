@@ -25,7 +25,7 @@ export const BITS_PRODUCTS = [
   {
     slug: "denta-bits-daily-dental-wellness-bits",
     title: "Denta Bits",
-    image: "/Products/DentaBits/Dentabits1.png",
+    image: "/Products/DentaBits/Dentabits2.png",
     banner: "/Products/DentaBits/Dentabitbg.png",
   },
 ];

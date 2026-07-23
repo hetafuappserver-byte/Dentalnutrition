@@ -10,13 +10,13 @@ export const MOUTHWASH_COLLECTION = {
 export const MOUTHWASH_PRODUCTS = [
   {
     slug: "cute-mouthwash-liquid",
-    title: "CUTE Mouthwash Edible Probiotic Mouthwash (Liquid)",
+    title: "CUTE Mouthwash (Liquid)",
     image: `/Products/CuteMouthwash/Cute.png`,
     banner: "/Products/CuteMouthwash/MouthwashBg.png",
   },
   {
     slug: "cute-mouthwash-powder",
-    title: "CUTE Mouthwash Edible Probiotic Mouthwash (Powder)",
+    title: "CUTE Mouthwash (Powder)",
     image: `/Products/CuteMouthwash/cutetablets.png`,
     banner: "/Products/CuteMouthwash/mouthwashBGpowder.png",
   },

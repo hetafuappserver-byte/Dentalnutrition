@@ -10,14 +10,14 @@ export const LOLLIPOPS_COLLECTION = {
 export const LOLLIPOPS_PRODUCTS = [
   {
     slug: "dollipops-probiotic-dentist-approved-lollipops-green-apple",
-    title: "Dollipops",
-    image: '/Products/Dollipops/DollipopGA.png',
+    title: "Dollipop (Green Apple)",
+    image: '/Products/Dollipops/Dollipops.png',
     banner: '/Products/Dollipops/DollipopGABg.png',
   },
   {
     slug: "dollipops-probiotic-dentist-approved-lollipops-mixed-berry",
-    title: "Dollipops",
-    image: '/Products/Dollipops/DollipopMB.png',
+    title: "Dollipop (Mixed Berry)",
+    image: '/Products/Dollipops/Mixedberry.png',
     banner: '/Products/Dollipops/DollipopMBBg.png',
   },
 ];

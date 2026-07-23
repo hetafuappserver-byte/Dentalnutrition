@@ -121,16 +121,14 @@ export default function SustainabilityPage() {
                 <p className="mb-6 text-base leading-[1.65] text-gray-700">
                   Hetafu delivers clinical proof. Our commitment runs deeper than marketing claims, it's validated by over 18 rigorous clinical trials that demonstrate real results for real people.
                 </p>
-                <ul className="space-y-3 mb-8">
+                <ul className="space-y-4 mb-8">
                   <li className="flex items-start gap-3"><span className="text-[#02c3c2] font-bold mt-1">✓</span><span className="text-sm">Clinically Proven Ingredients</span></li>
                   <li className="flex items-start gap-3"><span className="text-[#02c3c2] font-bold mt-1">✓</span><span className="text-sm">Expert-Backed Formulation</span></li>
                   <li className="flex items-start gap-3"><span className="text-[#02c3c2] font-bold mt-1">✓</span><span className="text-sm">Transparency at Every Step</span></li>
                   <li className="flex items-start gap-3"><span className="text-[#02c3c2] font-bold mt-1">✓</span><span className="text-sm">No Artificial Additives or Preservatives</span></li>
                   <li className="flex items-start gap-3"><span className="text-[#02c3c2] font-bold mt-1">✓</span><span className="text-sm">Trusted by Parents & Recommended by Experts</span></li>
+                  <li className="text-sm italic text-[#02c3c2] font-semibold gap-3">Because when it comes to your dental health, evidence isn't optional. It's essential.</li>
                 </ul>
-                <p className="text-sm italic text-[#02c3c2] font-semibold">
-                  Because when it comes to your dental health, evidence isn't optional. It's essential.
-                </p>
               </div>
               <div className="relative flex justify-center">
                 <Image src={CLINICAL_HEAD} alt="Clinical Head Scientist" width={500} height={600} priority className="w-full max-w-[450px] h-auto" />
@@ -140,10 +138,10 @@ export default function SustainabilityPage() {
         </section>
 
         <section className="mx-auto max-w-[1200px] px-4 sm:px-5 py-8 sm:py-10 md:px-8 md:py-14">
-          <h1 className="m-0 mb-4 sm:mb-5 [font-family:var(--heading-font)] text-[clamp(1.5rem,4vw,2.5rem)] font-normal tracking-[0.05em] capitalize">
+          <h1 className="m-0 mb-4 sm:mb-5 [font-family:var(--heading-font)] text-[clamp(1.5rem,4vw,2.5rem)] font-normal tracking-[0.05em] capitalize text-center">
             Explore our clinical trials and verified studies - your assurance of Hetafu's proven benefits.
           </h1>
-          <div className="mx-auto max-w-[820px] [&_p]:m-0 [&_p]:mb-3 sm:[&_p]:mb-4 [&_p]:text-base sm:[&_p]:text-lg [&_p]:leading-[1.6] sm:[&_p]:leading-[1.65] [&_p]:text-justify [&_p:last-child]:mb-0">
+          <div className="mx-auto max-w-[1200px] [&_p]:m-0 [&_p]:mb-3 sm:[&_p]:mb-4 [&_p]:text-base sm:[&_p]:text-lg [&_p]:leading-[1.6] sm:[&_p]:leading-[1.65] [&_p]:text-justify [&_p:last-child]:mb-0">
             {INTRO.map((paragraph) => (
               <p key={paragraph.slice(0, 40)}>{paragraph}</p>
             ))}
@@ -168,10 +166,10 @@ export default function SustainabilityPage() {
         </section>
 
         <section className="mx-auto max-w-[1200px] px-4 sm:px-5 py-8 sm:py-10 md:px-8 md:py-14">
-          <h2 className="m-0 mb-4 sm:mb-5 [font-family:var(--heading-font)] text-[clamp(1.5rem,4vw,2.5rem)] font-normal tracking-[0.05em] capitalize">
+          <h2 className="m-0 mb-4 sm:mb-5 [font-family:var(--heading-font)] text-[clamp(1.5rem,4vw,2.5rem)] font-normal tracking-[0.05em] capitalize text-center">
             get involved
           </h2>
-          <p className="mx-auto max-w-[720px] text-base sm:text-lg leading-[1.6] sm:leading-[1.65] text-justify [&_a]:text-[#02c3c2] [&_a]:underline [&_a]:underline-offset-[0.15em]">
+          <p className="mx-auto max-w-[1200px] text-base sm:text-lg leading-[1.6] sm:leading-[1.65] text-justify [&_a]:text-[#02c3c2] [&_a]:underline [&_a]:underline-offset-[0.15em]">
             What matters to you matters to us. If you want to know more about our sustainability efforts, send an email to <a href="mailto:reachthebest@hetafu.com">reachthebest@hetafu.com</a>.
           </p>
         </section>

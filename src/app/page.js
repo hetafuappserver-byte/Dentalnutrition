@@ -28,17 +28,6 @@ const SLIDES = [
     subtitle:
       "Expert-formulated nutrition that helps protect enamel and promote lasting dental health.",
   },
-  {
-    href: "/",
-    imageMobile: "/Slides/slide3.jpg",
-    imageDesktop: "/Slides/slide3.jpg",
-    alt: "Dental hygiene with tooth models and dental tools",
-    eyebrow: "Dental Nutrition",
-    title: "Eat Well, Smile Better",
-    subtitle:
-      "Daily nutrition choices that complement professional care for a confident, radiant smile.",
-    textAlign: "right",
-  },
 ];
 
 const HETAFU_PRODUCTS = [
@@ -68,12 +57,12 @@ const COLLECTION_CARDS = [
   {
     label: "Education",
     href: "/education",
-    image: `${CDN}/Artboard_1_1.png?v=1771448590&width=720`,
+    bgColor: "bg-[#401e17]",
   },
   {
     label: "Dental Nutrition",
     href: "/dental-nutrition",
-    image: `${CDN}/Artboard_2_1.png?v=1771448589&width=720`,
+    bgColor: "bg-[#0a4f4e]",
   },
 ];
 
@@ -85,7 +74,13 @@ const COLLECTION_BUTTON =
 
 function IconChevronLeft() {
   return (
-    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none">
+    <svg
+      aria-hidden="true"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
       <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
       <path
         d="M15 8l-4 4 4 4"
@@ -100,7 +95,13 @@ function IconChevronLeft() {
 
 function IconChevronRight() {
   return (
-    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none">
+    <svg
+      aria-hidden="true"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
       <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
       <path
         d="M9 8l4 4-4 4"
@@ -115,13 +116,21 @@ function IconChevronRight() {
 
 function ProductGrid({ products }) {
   return (
-    <div className="mx-auto mt-6 grid grid-cols-4 gap-3 max-w-[500px] px-4">
+    <div className="mx-auto mt-6 grid grid-cols-4 gap-3 md:gap-10 max-w-[600px] md:max-w-[1000px] px-4">
       {products.map((product) => (
         <a key={product.title} href={product.href} className="text-center">
-          <div className="mb-1 aspect-square overflow-hidden rounded-full bg-[#f3f3f3] [&_img]:!h-full [&_img]:!w-full [&_img]:object-cover">
-            <Image src={product.image} alt={product.title} width={120} height={120} className="max-w-full mx-auto" />
+          <div className="mb-2 md:mb-4 aspect-square overflow-hidden rounded-full md:rounded-lg bg-[#f3f3f3] [&_img]:!h-full [&_img]:!w-full [&_img]:object-cover">
+            <Image
+              src={product.image}
+              alt={product.title}
+              width={120}
+              height={120}
+              className="max-w-full mx-auto md:max-w-[180px]"
+            />
           </div>
-          <p className="text-[10px] capitalize tracking-[0.02em]">{product.title}</p>
+          <p className="text-[10px] md:text-sm capitalize tracking-[0.02em]">
+            {product.title}
+          </p>
         </a>
       ))}
     </div>
@@ -150,7 +159,10 @@ export default function Page() {
     <>
       <Navbar />
       <main id="main" style={{ backgroundColor: "#F2F2F2" }}>
-        <section className="relative w-full overflow-hidden" aria-label="Featured banners">
+        <section
+          className="relative w-full overflow-hidden"
+          aria-label="Featured banners"
+        >
           <button
             type="button"
             className={`${SLIDESHOW_ARROW} left-2 sm:left-4 md:left-6`}
@@ -205,7 +217,7 @@ export default function Page() {
                       : "items-start text-left"
                   }`}
                 >
-                  <div className="w-full max-w-[min(100%,16rem)] sm:max-w-[min(100%,32rem)] md:max-w-[min(50%,36rem)]">
+                  <div className="w-full max-w-[min(100%,16rem)] sm:max-w-[min(100%,32rem)] md:max-w-[min(50%,36rem)] ml-auto sm:ml-auto md:ml-[5%] lg:ml-[5%]">
                     <p className="m-0 mb-1 sm:mb-3 [font-family:var(--heading-font)] text-[10px] sm:text-sm font-semibold tracking-[0.12em] uppercase text-[var(--mo-teal)]">
                       {slide.eyebrow}
                     </p>
@@ -249,17 +261,16 @@ export default function Page() {
               <a
                 key={card.label}
                 href={card.href}
-                className="group relative block min-h-[320px] overflow-hidden"
+                className={`group/card relative block min-h-[300px] overflow-hidden ${card.bgColor}`}
               >
-                <Image
-                  src={card.image}
-                  alt={card.label}
-                  width={720}
-                  height={720}
-                  className="!h-full !min-h-[320px] !w-full object-cover transition-transform duration-[400ms] group-hover:scale-[1.03]"
-                />
                 <div className="absolute inset-0 flex items-center justify-center bg-black/10">
-                  <span className={COLLECTION_BUTTON}>{card.label}</span>
+                  <span className="group/button relative overflow-hidden border border-white px-6 py-3">
+                    <span className="relative z-10 text-white transition-colors duration-500 group-hover/button:text-black">
+                      {card.label}
+                    </span>
+
+                    <span className="absolute inset-0 origin-left scale-x-0 bg-white transition-transform duration-500 ease-linear group-hover/button:scale-x-100"></span>
+                  </span>
                 </div>
               </a>
             ))}
@@ -282,9 +293,10 @@ export default function Page() {
               </h3>
               <p>
                 Access inspirational and educational videos, plus self-guided
-                learning on nutrition, dental health, product application, and more.
-                Ask our Dental Nutrition Experts about all things dental nutrition!
-                Available for iOS and Android mobile and tablet devices.
+                learning on nutrition, dental health, product application, and
+                more. Ask our Dental Nutrition Experts about all things dental
+                nutrition! Available for iOS and Android mobile and tablet
+                devices.
               </p>
               <div className="flex flex-wrap justify-center gap-4 [&_img]:h-11 [&_img]:w-auto">
                 <a href="https://apps.apple.com/us/app/dental-nutrition/id123456789">

@@ -137,8 +137,8 @@ export default function MeetTheTeamPage() {
     <>
       <Navbar />
       <main id="main" className="bg-[#fcfcfc] text-[#401e17]">
-        <section className="mx-auto flex w-full max-w-[1400px] flex-col gap-4 px-4 py-6 pb-16 min-[700px]:gap-6 min-[700px]:px-8 min-[700px]:py-10 min-[700px]:pb-20">
-          <div className="mx-auto max-w-[1200px] px-5 pt-8 pb-2 text-center md:px-8 md:pt-10 md:pb-3">
+        <section className="mx-auto flex w-full max-w-[1400px] flex-col ">
+          <div className="mx-auto max-w-[1200px] p-5 text-center">
             <h1 className="m-0 [font-family:var(--heading-font)] text-[clamp(2rem,5vw,3rem)] font-normal tracking-[0.08em] uppercase">
               {TEAM_PAGE.title}
             </h1>
@@ -146,13 +146,13 @@ export default function MeetTheTeamPage() {
 
           {TEAM_PAGE.sections.map((section) => (
             <div key={section.title}>
-              <section className="mx-auto max-w-[1200px] px-5 pt-2 pb-4 text-center md:px-8 md:pt-3 md:pb-6">
+              <section className="mx-auto max-w-[1200px]  text-center">
                 <p className="m-0 [font-family:var(--heading-font)] text-[clamp(1.75rem,4.5vw,2.75rem)] font-normal capitalize">
                   {section.title}
                 </p>
               </section>
-              <section className="mx-auto max-w-[1200px] px-5 py-8 md:px-8 md:py-10">
-                <div className="flex flex-wrap justify-center gap-x-5 gap-y-8 min-[700px]:gap-x-8 min-[700px]:gap-y-10">
+              <section className="mx-auto max-w-[1200px]">
+                <div className="flex flex-wrap justify-center gap-x-5 gap-y-8 min-[700px]:gap-x-8 min-[700px]:gap-y-10 p-5">
                   {section.members.map((member) => (
                     <button
                       key={member.id}
@@ -160,12 +160,12 @@ export default function MeetTheTeamPage() {
                       onClick={() => setActiveId(member.modalId)}
                       className="cursor-pointer border-0 bg-transparent p-0 text-left w-[calc(50%-10px)] min-[700px]:w-[calc(25%-16px)]"
                     >
-                      <div className="mx-auto mb-4 aspect-square w-full max-w-[155px] overflow-hidden rounded-full bg-[#f3f3f3] min-[700px]:max-w-[250px]">
+                      <div className="mx-auto mb-4 aspect-square w-full max-w-[700px] overflow-hidden bg-[#f3f3f3] min-[700px]:max-w-[700px]">
                         <Image
                           src={member.image}
                           alt={member.name}
-                          width={600}
-                          height={600}
+                          width={700}
+                          height={700}
                           className="h-full w-full object-contain"
                         />
                       </div>

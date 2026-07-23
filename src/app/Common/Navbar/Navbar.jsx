@@ -45,7 +45,7 @@ const NAV_ITEMS = [
       {
         title: "Category",
         links: [
-          { label: "Bits", href: "/products/bits" },
+          { label: "Bits", href: "/products/bits/denta-bits-daily-dental-wellness-bits" },
           { label: "Lollipops", href: "/products/lollipops" },
           { label: "Mouthwashes", href: "/products/mouthwash" },
           { label: "Smarts", href: "/products/smarts" },

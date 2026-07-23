@@ -12,9 +12,6 @@ export { ProductDetail };
 export default function Mouthwash() {
   return (
     <main id="main" className="bg-[#fcfcfc] text-[#401e17]">
-      <div className="px-5 pt-6 md:sticky md:top-40 md:px-0 md:pl-14">
-        <CollectionBreadcrumb title={MOUTHWASH_COLLECTION.title} />
-      </div>
 
       <section className="max-w-[680px] mx-auto pt-6 px-5 pb-6 text-center md:pt-14 md:px-8 md:pb-8" aria-label="Collection">
         <h1 className="font-[Instrument_Sans,sans-serif] text-[clamp(1.75rem,4vw,2.5rem)] font-normal tracking-[0.05em] capitalize m-0 mb-4">
@@ -25,24 +22,18 @@ export default function Mouthwash() {
         </p>
       </section>
 
-      <section className="max-w-[1200px] mx-auto px-5 pb-12 md:px-8 md:pb-16" aria-label="Products">
-        <div className="flex justify-end py-3 pb-6 border-t border-black/[0.08]">
-          <p className="m-0 text-sm tracking-[0.04em] opacity-65 lowercase">
-            {MOUTHWASH_PRODUCTS.length} products
-          </p>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4 sm:gap-5 max-w-[1200px] mx-auto md:grid-cols-4 md:gap-6">
-          {MOUTHWASH_PRODUCTS.map((product) => (
-            <Link key={product.slug} href={getProductHref("mouthwash", product.slug)} className="text-center">
-              <div className="aspect-square bg-[#f3f3f3] mb-3 overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-contain">
-                <Image src={product.image} alt={product.title} width={600} height={600} />
-              </div>
-              <p className="text-sm sm:text-base capitalize tracking-[0.02em]">{product.title}</p>
-            </Link>
-          ))}
-        </div>
-      </section>
+      <section className="mx-auto max-w-[1200px] px-5 py-10 md:px-8 md:py-14">
+          <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-4 min-[700px]:grid-cols-2 [&>:last-child:only-child]:min-[700px]:col-span-2 [&>:last-child:only-child]:min-[700px]:justify-self-center [&>:last-child:only-child]:min-[700px]:max-w-[50%]">
+            {MOUTHWASH_PRODUCTS.map((product) => (
+              <Link key={product.slug} href={getProductHref("mouthwash", product.slug)} className="group relative block min-h-[320px] overflow-hidden">
+                <Image src={product.image} alt={product.title} width={1000} height={1000} className="!h-full !min-h-[320px] !w-full object-cover transition-transform duration-[400ms] group-hover:scale-[1.03]" />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/[0.3]">
+                  <span className="border-2 border-white px-8 py-3 uppercase tracking-[0.12em] text-white font-medium transition-all duration-300 hover:bg-white hover:text-[#401e17] text-center">{product.title}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
     </main>
   );
 }

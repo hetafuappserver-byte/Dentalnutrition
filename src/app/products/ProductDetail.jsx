@@ -14,7 +14,7 @@ const TAB_DEFINITIONS = [
 function Breadcrumb({ product, collection }) {
   return (
     <nav className="font-bold" aria-label="Breadcrumb">
-      <ol className="flex flex-wrap justify-start gap-x-2 gap-y-[0.35rem] list-none m-0 p-0 text-xs tracking-[0.12em] uppercase opacity-65 [&>li:not(:last-child)]:after:content-['/'] [&>li:not(:last-child)]:after:ml-2 [&>li:not(:last-child)]:after:opacity-50">
+      {/* <ol className="flex flex-wrap justify-start gap-x-2 gap-y-[0.35rem] list-none m-0 p-0 text-xs tracking-[0.12em] uppercase opacity-65 [&>li:not(:last-child)]:after:content-['/'] [&>li:not(:last-child)]:after:ml-2 [&>li:not(:last-child)]:after:opacity-50">
         <li>
           <Link href="/" className="no-underline text-inherit hover:opacity-80">
             Home
@@ -26,25 +26,27 @@ function Breadcrumb({ product, collection }) {
           </Link>
         </li>
         <li aria-current="page">{product.title}</li>
-      </ol>
+      </ol> */}
     </nav>
   );
 }
 
 function IngredientCard({ item }) {
   return (
-    <article className="text-center">
+    <div className="text-center h-full flex flex-col">
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={item.image}
-        alt=""
-        width={80}
-        height={80}
-        className="w-20 h-20 object-contain mx-auto mb-4"
-      />
+      <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+        <img
+          src={item.image}
+          alt=""
+          width={80}
+          height={80}
+          className="max-w-full max-h-full object-contain"
+        />
+      </div>
       <h3 className="text-base font-semibold m-0 mb-2">{item.title}</h3>
-      <p className="text-[0.9375rem] leading-[1.6] m-0 opacity-85">{item.description}</p>
-    </article>
+      <p className="text-[0.9375rem] leading-[1.6] m-0 opacity-85 flex-grow">{item.description}</p>
+    </div>
   );
 }
 
@@ -110,41 +112,47 @@ export function ProductDetail({ product, collection }) {
               {product.title}
             </h1>
             {product.tagline && <p className="text-sm sm:text-base m-0 mb-4 text-[#0891b2] font-medium">{product.tagline}</p>}
-            <p className="text-sm sm:text-base leading-[1.65] m-0 text-gray-700 text-justify">{product.description}</p>
+            <p className="text-sm sm:text-base leading-[1.65] m-0 text-gray-700">{product.description}</p>
           </div>
         </div>
 
-        {/* Desktop: absolute overlay layout */}
-        <div className="hidden lg:block relative z-[1] lg:absolute lg:left-[4%] xl:left-[6%] lg:top-[43%] px-5 lg:px-8">
-          <div className="mx-auto w-full max-w-none lg:max-w-[380px] xl:max-w-[450px]">
-            <div className="lg:aspect-square lg:rounded-full aspect-square rounded-lg bg-[#f3f3f3] overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover flex items-center justify-center lg:border-8 border-4 border-[#fcfcfc] shadow-lg">
-              <Image src={gallery[activeImage]} alt={product.title} width={900} height={900} priority />
-            </div>
-            {gallery.length > 1 && (
-              <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-4">
-                {gallery.map((image, index) => (
-                  <button
-                    key={image}
-                    type="button"
-                    className={`w-14 h-14 sm:w-[72px] sm:h-[72px] p-0 border cursor-pointer overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-contain`}
-                    aria-label={`View image ${index + 1}`}
-                    aria-current={activeImage === index}
-                    onClick={() => setActiveImage(index)}
-                  >
-                    <Image src={image.replace("&width=1200", "&width=200")} alt="" width={112} height={112} />
-                  </button>
-                ))}
+        {/* Desktop: Grid layout - 40% left (images), 60% right (content) */}
+        <div className="hidden lg:block max-w-[1400px] mx-auto">
+          <div className="grid grid-cols-[40%_60%] w-full">
+            {/* Left column (40%) - Product image with thumbnails - half on banner, half below */}
+            <div className="relative z-[1] px-5 lg:px-8 -mt-48">
+              <div className="mx-auto w-full max-w-none lg:max-w-[380px] xl:max-w-[450px]">
+                <div className="lg:aspect-square lg:rounded-full aspect-square rounded-lg bg-[#f3f3f3] overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover flex items-center justify-center lg:border-8 border-4 border-[#fcfcfc] shadow-lg">
+                  <Image src={gallery[activeImage]} alt={product.title} width={900} height={900} priority />
+                </div>
+                {gallery.length > 1 && (
+                  <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-4">
+                    {gallery.map((image, index) => (
+                      <button
+                        key={image}
+                        type="button"
+                        className={`w-14 h-14 sm:w-[72px] sm:h-[72px] p-0 border cursor-pointer overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-contain`}
+                        aria-label={`View image ${index + 1}`}
+                        aria-current={activeImage === index}
+                        onClick={() => setActiveImage(index)}
+                      >
+                        <Image src={image.replace("&width=1200", "&width=200")} alt="" width={112} height={112} />
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-        </div>
-        <div className="hidden lg:block max-w-[1200px] mx-auto pt-8 lg:pt-10">
-          <div className="lg:text-left lg:ml-[420px] xl:ml-[500px]">
-            <h1 className="font-['Ivy_Mode_Regular',sans-serif] text-[32px] font-normal tracking-[0.02rem] m-0 mb-2 text-justify">
-              {product.title}
-            </h1>
-            {product.tagline && <p className="text-sm lg:text-base m-0 mb-4 text-[#0891b2] font-medium text-justify">{product.tagline}</p>}
-            <p className="text-sm lg:text-base leading-[1.65] m-0 text-gray-700 text-justify">{product.description}</p>
+            </div>
+            {/* Right column (60%) - Product content */}
+            <div className="pt-8 lg:pt-10">
+              <div className="lg:text-left">
+                <h1 className="font-['Ivy_Mode_Regular',sans-serif] text-[32px] font-normal tracking-[0.02rem] m-0 mb-2">
+                  {product.title}
+                </h1>
+                {product.tagline && <p className="text-sm lg:text-base m-0 mb-4 text-[#0891b2] font-medium">{product.tagline}</p>}
+                <p className="text-sm lg:text-base leading-[1.65] m-0 text-gray-700">{product.description}</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -166,10 +174,10 @@ export function ProductDetail({ product, collection }) {
             ))}
           </div>
           <div className="max-w-[900px] mx-auto">
-            {activeTab === "howToUse" && <p className="text-base leading-[1.65] m-0 text-justify">{product.howToUse}</p>}
-            {activeTab === "benefits" && <p className="text-base leading-[1.65] m-0 text-justify">{product.benefits}</p>}
+            {activeTab === "howToUse" && <p className="text-base leading-[1.65] m-0 text-center">{product.howToUse}</p>}
+            {activeTab === "benefits" && <p className="text-base leading-[1.65] m-0 text-center">{product.benefits}</p>}
             {activeTab === "ingredients" && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 [&>:nth-child(4):last-child]:lg:col-start-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr [&>:nth-child(4):last-child]:lg:col-start-2">
                 {ingredients.map((item) => (
                   <IngredientCard key={item.title} item={item} />
                 ))}
@@ -191,8 +199,8 @@ export function ProductDetail({ product, collection }) {
               </button>
               {openAccordion === tab.id && (
                 <div className="pb-5">
-                  {tab.id === "howToUse" && <p className="text-base leading-[1.65] m-0 text-justify">{product.howToUse}</p>}
-                  {tab.id === "benefits" && <p className="text-base leading-[1.65] m-0 text-justify">{product.benefits}</p>}
+                  {tab.id === "howToUse" && <p className="text-base leading-[1.65] m-0">{product.howToUse}</p>}
+                  {tab.id === "benefits" && <p className="text-base leading-[1.65] m-0">{product.benefits}</p>}
                   {tab.id === "ingredients" && (
                     <div className="grid grid-cols-1 gap-6">
                       {ingredients.map((item) => (
